@@ -23,7 +23,7 @@ cambとは、日本語でキャン部といいキャンプが好きな人のた�
 SNSで知り合った人とキャンプができる。  
 
 ## 設計書
-作成次第追記
+- https://drive.google.com/file/d/1NhqP72o4cWjY7dSxaZOMLfq2h2WhmTtH/view?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
