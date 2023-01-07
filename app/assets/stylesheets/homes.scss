@@ -1,11 +1,20 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.container {
-  background-image: image-url('camb_top1.jpg');
+
+.container-fluid {
+  background-image: image-url('camb_top4.jpg');
   background-size: cover;
   background-position: bottom;
   height:100%;
   width:100%;
   background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  opacity: 0.5;
+}
+
+.full-page {
+  width: 100vw;
+  height: 100vh;
 }
