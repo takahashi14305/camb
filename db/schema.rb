@@ -48,17 +48,17 @@ ActiveRecord::Schema.define(version: 2023_01_07_041651) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.text "comment"
-    t.integer "user_id"
-    t.integer "post_image_id"
+    t.text "comment", null: false
+    t.integer "user_id", null: false
+    t.integer "post_image_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "post_images", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.integer "user_id"
+    t.string "title", null: false
+    t.text "body", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
