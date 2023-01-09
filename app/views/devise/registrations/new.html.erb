@@ -2,43 +2,44 @@
 <div class="container-fluid">
   <div class="full-page">
     <div class= "row">
-      <div class="col-md-12 text-center text-white">
-        <h2>新規登録</h2>
+      <div class= "col-md-12 text-center text-white" style="margin-top:150px">
+        <h1>新規登録</h1>
       </div>
     </div>
     <%= form_with model: @user, url: user_registration_path do |f| %>
       <div class= "row">
-        <div class="col-md-12 text-center text-white">
+        <div class= "col-md-12 text-center text-white">
           <%= render "devise/shared/error_messages", resource: resource %>
-            <table>
+            <table align="center" style="height: 280px">
               <tr>
                 <td><%= f.label :名前 %></td>
-                <td><%= f.text_field :name %></td>
+                <td><%= f.text_field :name, class: "bg-transparent border border-white" %></td>
               </tr>
               <tr>
                 <td><%= f.label :email %></td>
-                <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+                <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-transparent border border-white" %></td>
               </tr>
               <tr>
                 <td><%= f.label :パスワード %>
                   <% if @minimum_password_length %>
-                    <em>(<%= @minimum_password_length %> 字以上半角英数)</em>
+                    <em>(<%= @minimum_password_length %> 字以上半角英数)　</em>
                   <% end %>
                 </td>
-                <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+                <td><%= f.password_field :password, autocomplete: "new-password", class: "bg-transparent border border-white" %></td>
               </tr>
               <tr>
                 <td><%= f.label :パスワード確認 %></td>
-                <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+                <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-transparent border border-white" %></td>
               </tr>
             </table>
         </div>
       </div>
 
       <div class= "row">
-        <div class="col-md-12 text-center">
-          <h2><%= f.submit "新規登録" %></h2>
+        <div class= "col-md-12 text-center">
+          <h2><%= f.submit "新規登録する", class:"btn btn-outline-success" %></h2>
           <%= render "devise/shared/links" %>
+          <%= link_to "最初のページに戻る", root_path %>
         </div>
       </div>
 
