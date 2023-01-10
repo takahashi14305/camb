@@ -6,25 +6,59 @@
       <div class="col-md-3 text-center text-white" style="margin-top:50px">
 
         <div>
+          <h2>MY PROFILE</h2>
+
+          <div class="text-center" ><%= image_tag @current_user.get_profile_image(170,170), class:"border border-3" %></div>
           <h3><%= @current_user.name %></h3>
-          <div class="pro-img" ><%= image_tag @current_user.get_profile_image(200,200), class: "rounded-circle" %></div>
-          <%= link_to "プロフィール編集", edit_user_path(@user) %>
-        </div>
-
-
-        <% @post_images.each do |post_image| %>
-        <div>
-          <%= link_to post_image_path(post_image.id) do %>
-            <%= image_tag post_image.get_image %>
+          <div>自己紹介</div>
+          <% if !@current_user.introduction.blank? %>
+          <h5 class= "border-bottom mt-2 ml-4 mr-4"><%= @current_user.introduction %></h5>
+          <% else %>
+          <h6 class= "border-bottom">まだ設定していません</h6>
           <% end %>
-          <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
-          <p>ショップ名：<%= post_image.title %></p>
-          <p>説明：<%= post_image.body %></p>
-          <p>ユーザーネーム：<%= post_image.user.name %></p>
-          <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
+          <table align="center" width="150" height="180">
+            <tr class= "border-bottom">
+              <td>投稿数　:</td>
+              <td><%= @current_user.post_images.count %>件</td>
+            </tr>
+            <tr class= "border-bottom">
+              <td>Follow　:</td>
+              <td>33</td>
+            </tr>
+            <tr class= "border-bottom">
+              <td>Follower　:</td>
+              <td>33</td>
+            </tr>
+          </table>
+          <div class="btn btn-outline-success mt-4"><%= link_to "プロフィール編集", edit_user_path(@user), class:"text-light" %></div>
         </div>
-        <% end %>
+
       </div>
+
+       <% @post_images.each do |post_image| %>
+         <div class="col-md-3">
+           <div class="card">
+             <%= link_to post_image_path(post_image.id) do %>
+            　<%= image_tag post_image.get_image, size: "100x200", class: 'card-img-top' %>
+             <% end %>
+              <div class="card-body">
+              <%= image_tag post_image.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %>
+              </div>
+              <div class="card-title">
+             <%= post_image.title %>
+             </div>
+             <div class="card-text">
+             <%= post_image.body %>
+             </div>
+          </div>
+        </div>
+       <% end %>
+
+
+
+
+
+
     </div>
   </div>
 </div>

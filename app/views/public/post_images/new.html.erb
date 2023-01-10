@@ -11,7 +11,7 @@
 
   <%= form_with model: @post_image do |f| %>
     <h4>画像</h4>
-      <%= f.file_field :images, accept: "image/*" %>
+      <%= f.file_field :image, accept: "image/*" %>
     <h4>見出し</h4>
       <%= f.text_field :title %>
     <h4>本文</h4>
