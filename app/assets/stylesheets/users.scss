@@ -1,3 +1,43 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.container-fluid {
+  background-image: image-url('camb_back3.jpg');
+  background-size: cover;
+  background-position: bottom;
+  height:100%;
+  width:100%;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  //opacity: 0.4;
+  font-family: serif;
+}
+
+.container-fluid::before {
+  content: '';
+  /* ↓暗いオーバーレイを半透明で配置 */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* ↓全体を覆うように配置 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.full-page {
+  width: 100vw;
+  height: 100vh;
+}
+
+.pro-img {
+  .trim-image-to-circle {
+    background-image: url("summerriver.jpg");  /* 表示する画像 */
+    width:  180px;       /* ※縦横を同値に */
+    height: 180px;       /* ※縦横を同値に */
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    background-position: left top;  /* 横長画像の左上を基準に表示 */
+}
+}
