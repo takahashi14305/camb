@@ -1,16 +1,41 @@
-<h1>編集画面</h1>
 
-<%= form_with model: @post_image, local: true, method: :patch do |f| %>
+<%= stylesheet_link_tag "users", :media => "all" %>
+<div class="container-fluid">
+  <div class="full-page">
+    <div class= "row">
+      <div class= "col-md-12 text-center text-white" style="margin-top:80px">
+        <h1>投稿編集</h1>
+      </div>
+    </div>
+    
+    <%= form_with model: @post_image, local: true, method: :patch do |f| %>
+      <div class= "row">
+        <div class= "col-md-12 text-center text-white">
+          <table align="center" style="height: 380px">
+            <tr>
+              <td><label for="inputName">画像</label></td>
+              <td><%= f.file_field :image, accept: "image/*" %></td>
+            </tr>
+            <tr>
+              <td><label for="inputIntroduction">タイトル</label></td>
+              <td><%= f.text_field :title, class: "bg-transparent border border-white text-white", size: "30x3" %></td>
+            </tr>
+            <tr>
+              <td><label for="inputImage">本文</label></td>
+              <td><%= f.text_area :body, class: "bg-transparent border border-white text-white", size: "30x7" %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
 
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
+      <div class= "row">
+        <div class= "col-md-12 text-center text-white">
+          <div style="margin-top:3px"><%= f.submit "編集完了", class:"btn btn-outline-success" %></div>
+          <div class="mt-3"><%= link_to "戻る", user_path(@post_image.user.id), class:"btn btn-outline-success" %></div>
+        </div>
+      </div>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+    <% end %>
 
-  <h4>本文</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit '保存' %>
-
-<% end %>
+  </div>
+</div>

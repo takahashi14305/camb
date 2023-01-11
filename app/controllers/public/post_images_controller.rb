@@ -15,12 +15,14 @@ class Public::PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.page(params[:page]).per(8)
+    @current_user = current_user
   end
 
   def show
     @post_image = PostImage.find(params[:id])
     @post_comment = PostComment.new
+    @current_user = current_user
   end
 
   def destroy

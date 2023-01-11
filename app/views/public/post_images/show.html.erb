@@ -1,43 +1,151 @@
-<div>
-  <%= image_tag @post_image.get_image %>
-  <p>ショップ名：<%= @post_image.title %></p>
-  <p>説明：<%= @post_image.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag @post_image.user.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム：<%= @post_image.user.name %></p>
-  <p>投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post_image.user == current_user %>
-    <%= link_to "削除", post_image_path(@post_image), method: :delete %>
-    <%= link_to "編集", edit_post_image_path(@post_image.id) %>
-  <% end %>
-  <% if @post_image.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
-        ♥<%= @post_image.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_image_favorites_path(@post_image), method: :post do %>
-        ♡<%= @post_image.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-</div>
 
-<div>
-  <p>コメント件数：<%= @post_image.post_comments.count %></p>
-  <% @post_image.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@post_image, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+<%= stylesheet_link_tag "users", :media => "all" %>
+<div class="container-fluid">
+  <div class="full-page">
+
+    <div class= "hedder">
+      <div class= "row">
+        <div class="col-md-4 text-center text-white pl-5 mt-3">
+          <div class="btn btn-outline-success mr-5"><%= link_to "マイページ", user_path(@current_user.id), class:"text-light" %></div>
+          <div class="btn btn-outline-success mr-3"><%= link_to '　新規投稿　', new_post_image_path, class:"text-light" %></div>
+        </div>
+        
+        <div class="col-md-4 text-center text-white">
+          <%= link_to root_path, class:"text-decoration-none" do %>
+            <div class="d-flex justify-content-center">
+              <div class="logo-1"><%= image_tag 'camb_hedlogo5.png', size: '70x70' %></div>
+              <div class="hed-text text-white">CAMB</div>
+              <div class="logo-1"><%= image_tag 'camb_hedlogo4.png', size: '70x70' %></div>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="col-md-4 text-center text-white mt-3">
+          <div class="btn btn-outline-success mr-5"><%= link_to "　投稿一覧　", post_images_path, class:"text-light" %></div>
+          <div class="btn btn-outline-success mr-3"><%= link_to '　ABOUT　', about_path, class:"text-light" %></div>
+        </div>
+      </div>
+    </div>
+
+    <div class= "row">
+      <div class="col-md-3 text-center text-white"></div>
+      <div class="col-md-3 text-white mt-1 mb-1">
+        <h3>投稿詳細</h3>
+      </div>
+    </div>
+
+    <div class= "row">
+      <div class="col-md-3 text-center text-white" style="margin-top:0px">
+
+        <div>
+          <h2>PROFILE</h2>
+          <div class="text-center" ><%= image_tag @post_image.user.get_profile_image(170,170), class:"border border-3" %></div>
+            <h3><%= @post_image.user.name %></h3>
+          <div>自己紹介</div>
+          <% if !@post_image.user.introduction.blank? %>
+            <h5 class= "border-bottom mt-2 ml-4 mr-1"><%= @post_image.user.introduction %></h5>
+          <% else %>
+            <h6 class= "border-bottom">まだ設定していません</h6>
+          <% end %>
+          
+          <table align="center" width="150" height="180">
+            <tr class= "border-bottom">
+              <td>投稿数　:</td>
+              <td><%= @post_image.user.post_images.count %>件</td>
+            </tr>
+            <tr class= "border-bottom">
+              <td>Follow　:</td>
+              <td>33</td>
+            </tr>
+            <tr class= "border-bottom">
+              <td>Follower　:</td>
+              <td>33</td>
+            </tr>
+          </table>
+          
+          <% if @post_image.user == current_user %>
+            <div class="btn btn-outline-success mt-4"><%= link_to "プロフィール編集", edit_user_path(@current_user), class:"text-light" %></div>
+          <% end %>
+        </div>
+      </div>
+
+        <div class="col-md-6">
+          <div class="card" style="height: 650px;">
+            <%= image_tag @post_image.get_image, class: 'card-img-top' %>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2">
+                  <h6 class="card-title">コメント欄　<%= @post_image.post_comments.count %>件</h6>
+                </div>
+                <div class="col-md-6">
+                  <% @post_image.post_comments.each do |post_comment| %>
+                    <table>
+                      <tr>
+                        <td rowspan="2"><%= image_tag post_comment.user.get_profile_image(30,30), class:"rounded-circle"; %></td>
+                        <td><%= post_comment.user.name %>　<%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+                      </tr>
+                      <tr>
+                        <td><%= post_comment.comment %>
+                            <% if post_comment.user == current_user %>
+                               <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
+                           <% end %>
+                        </td>
+                      </tr>
+                    </table>
+                  <% end %>
+                </div>
+                <div class="col-md-4">
+                  <%= form_with model: [@post_image, @post_comment] do |f| %>
+                    <%= f.text_area :comment, size: "20x2", placeholder: "コメントを入力" %>
+                    <%= f.submit "送信する" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <h5 class="card-footer">
+              <%= image_tag @post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
+              <%= @post_image.user.name %>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card mb-4 mr-2" style="height: 650px;">
+            <div class="card-header">
+              <h4 class="card-title"><%= @post_image.title %></h4>
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p class="card-text"><%= @post_image.body %></p>
+                <footer class="blockquote-footer">投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></footer>
+                <footer class="blockquote-footer">編集日：<%= @post_image.updated_at.strftime('%Y/%m/%d') %></footer>
+              </blockquote>
+            </div>
+
+            <div class="card-footer">
+              <div class="d-flex justify-content-center">
+                <% if @post_image.favorited_by?(current_user) %>
+                  <div class="mr-5">
+                    <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
+                      ♥<%= @post_image.favorites.count %> いいね
+                    <% end %>
+                  </div>
+                <% else %>
+                  <div class="mr-5 mt-2">
+                    <%= link_to post_image_favorites_path(@post_image), method: :post do %>
+                      ♡<%= @post_image.favorites.count %> いいね
+                    <% end %>
+                  </div>
+                <%end %>
+                <% if @post_image.user == current_user %>
+                  <div class="btn btn-outline-success mr-4"><%= link_to "削除", post_image_path(@post_image), method: :delete, class:"text-danger" %></div>
+                  <div class="btn btn-outline-success"><%= link_to "編集", edit_post_image_path(@post_image.id), class:"text-dark" %></div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
 </div>

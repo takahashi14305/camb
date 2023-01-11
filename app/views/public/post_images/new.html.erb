@@ -20,21 +20,22 @@
     <%= form_with model: @post_image do |f| %>
       <div class= "row">
         <div class= "col-md-12 text-center text-white">
-          <table align="center" style="height: 200px">
+          
+          <table align="center" style="height: 380px">
             <tr>
               <td><label for="inputName">画像</label></td>
               <td><%= f.file_field :image, accept: "image/*" %></td>
             </tr>
             <tr>
               <td><label for="inputIntroduction">タイトル</label></td>
-              <td><%= f.text_field :title, class: "bg-transparent border border-white text-white" %></td>
+              <td><%= f.text_field :title, class: "bg-transparent border border-white text-white", size: "30x3" %></td>
             </tr>
             <tr>
               <td><label for="inputImage">本文</label></td>
-              <td><%= f.text_area :body, class: "bg-transparent border border-white text-white" %></td>
+              <td><%= f.text_area :body, class: "bg-transparent border border-white text-white", size: "30x7" %></td>
             </tr>
-
           </table>
+          
         </div>
       </div>
 
