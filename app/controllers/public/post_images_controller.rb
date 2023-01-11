@@ -1,6 +1,7 @@
 class Public::PostImagesController < ApplicationController
   def new
     @post_image = PostImage.new
+    @current_user = current_user
   end
 
   def create
@@ -27,6 +28,16 @@ class Public::PostImagesController < ApplicationController
     @post_image.destroy
     @user = current_user
     redirect_to user_path(@user.id)
+  end
+
+  def edit
+    @post_image = PostImage.find(params[:id])
+  end
+
+  def update
+    post_image = PostImage.find(params[:id])
+    post_image.update(post_image_params)
+    redirect_to post_image_path(post_image.id)
   end
 
   private

@@ -32,10 +32,14 @@
   height: 100vh;
 }
 
-.pro-img {
-    width:  180px;       /* ※縦横を同値に */
-    height: 180px;       /* ※縦横を同値に */
-    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
-    background-position: left top;  /* 横長画像の左上を基準に表示 */
+.hedder {
+  background-image: image-url('camb_hed2.jpg');
+  height:70px;
+  background-position: bottom;
+  object-fit: cover;
+  max-width: 100%;
 }
 
+.hed-text {
+  font-size: 60px;
+}
