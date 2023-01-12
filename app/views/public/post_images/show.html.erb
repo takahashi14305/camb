@@ -39,7 +39,7 @@
 
         <div>
           <h2>PROFILE</h2>
-          <%= link_to users_show_path(@post_image.id) do %>
+          <%= link_to users_show_path(@post_image.user.id) do %>
             <div class="text-center" ><%= image_tag @post_image.user.get_profile_image(170,170), class:"border border-3" %></div>
             <h3 class="text-white"><%= @post_image.user.name %></h3>
           <% end %>
