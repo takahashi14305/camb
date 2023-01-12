@@ -10,9 +10,12 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
+    post 'guests/guest_sign_in', to: 'guests#new_guest'
     get 'users/show'
     get 'users/edit'
     get "about" => "homes#about"
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :post_images, only: [:new, :create, :index, :show, :destroy, :edit, :update] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]

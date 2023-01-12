@@ -35,7 +35,9 @@
           <% else %>
             <div class="btn btn-outline-success mr-4"><%= link_to "新規登録", new_user_registration_path, class:"text-light" %></div>
             <div class="btn btn-outline-success"><%= link_to "ログイン", new_user_session_path, class:"text-light" %></div>
+            <div class="btn btn-outline-success"><%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post %>></div>
           <% end %>
+          <div><%= flash[:notice] %></div>
         </div>
       </div>
     </div>

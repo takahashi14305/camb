@@ -9,7 +9,7 @@
           <div class="btn btn-outline-success mr-5"><%= link_to "マイページ", user_path(@current_user.id), class:"text-light" %></div>
           <div class="btn btn-outline-success mr-3"><%= link_to '　新規投稿　', new_post_image_path, class:"text-light" %></div>
         </div>
-        
+
         <div class="col-md-4 text-center text-white">
           <%= link_to root_path, class:"text-decoration-none" do %>
             <div class="d-flex justify-content-center">
@@ -19,7 +19,7 @@
             </div>
           <% end %>
         </div>
-        
+
         <div class="col-md-4 text-center text-white mt-3">
           <div class="btn btn-outline-success mr-5"><%= link_to "　投稿一覧　", post_images_path, class:"text-light" %></div>
           <div class="btn btn-outline-success mr-3"><%= link_to '　ABOUT　', about_path, class:"text-light" %></div>
@@ -39,15 +39,17 @@
 
         <div>
           <h2>PROFILE</h2>
-          <div class="text-center" ><%= image_tag @post_image.user.get_profile_image(170,170), class:"border border-3" %></div>
-            <h3><%= @post_image.user.name %></h3>
+          <%= link_to users_show_path(@post_image.id) do %>
+            <div class="text-center" ><%= image_tag @post_image.user.get_profile_image(170,170), class:"border border-3" %></div>
+            <h3 class="text-white"><%= @post_image.user.name %></h3>
+          <% end %>
           <div>自己紹介</div>
           <% if !@post_image.user.introduction.blank? %>
             <h5 class= "border-bottom mt-2 ml-4 mr-1"><%= @post_image.user.introduction %></h5>
           <% else %>
             <h6 class= "border-bottom">まだ設定していません</h6>
           <% end %>
-          
+
           <table align="center" width="150" height="180">
             <tr class= "border-bottom">
               <td>投稿数　:</td>
@@ -62,7 +64,7 @@
               <td>33</td>
             </tr>
           </table>
-          
+
           <% if @post_image.user == current_user %>
             <div class="btn btn-outline-success mt-4"><%= link_to "プロフィール編集", edit_user_path(@current_user), class:"text-light" %></div>
           <% end %>
@@ -103,12 +105,12 @@
               </div>
             </div>
             <h5 class="card-footer">
-              <%= image_tag @post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
-              <%= @post_image.user.name %>
+                <%= image_tag @post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
+                <%= link_to @post_image.user.name, users_show_path(@post_image.id), class:"text-dark" %>
             </h5>
           </div>
         </div>
-        
+
         <div class="col-md-3">
           <div class="card mb-4 mr-2" style="height: 650px;">
             <div class="card-header">
