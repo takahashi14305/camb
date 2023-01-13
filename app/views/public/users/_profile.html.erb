@@ -22,17 +22,23 @@
       </tr>
       <tr class= "border-bottom">
         <td>Follow　:</td>
-        <td>33</td>
+        <td><%= user.followings.count %></td>
       </tr>
       <tr class= "border-bottom">
         <td>Follower　:</td>
-        <td>33</td>
+        <td><%= user.followers.count %></td>
       </tr>
     </table>
     <% if user == current_user %>
       <div class="btn btn-outline-success mt-4"><%= link_to "プロフィール編集", edit_user_path(current_user), class:"text-light" %></div><br>
       <div class="btn btn-outline-success mt-4"><%= link_to "退会する", unsubscribe_path(current_user), class:"text-danger" %></div>
       <div class="btn btn-outline-success mt-4"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-light" %></div>
+    <% else %>
+      <% if current_user.following?(user) %>
+        <div class="btn btn-outline-success mt-4"><%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class:"text-light" %></div>
+      <% else %>
+        <div class="btn btn-outline-success mt-4"><%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"text-light" %></div>
+      <% end %>
     <% end %>
   </div>
 </div>
