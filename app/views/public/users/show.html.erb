@@ -2,27 +2,7 @@
 <div class="container-fluid">
   <div class="full-page">
 
-    <div class= "hedder">
-      <div class= "row">
-        <div class="col-md-4 text-center text-white pl-5 mt-3">
-          <div class="btn btn-outline-success mr-5"><%= link_to "マイページ", user_path(@current_user.id), class:"text-light" %></div>
-          <div class="btn btn-outline-success mr-3"><%= link_to '　新規投稿　', new_post_image_path, class:"text-light" %></div>
-        </div>
-        <div class="col-md-4 text-center text-white">
-          <%= link_to root_path, class:"text-decoration-none" do %>
-            <div class="d-flex justify-content-center">
-              <div class="logo-1"><%= image_tag 'camb_hedlogo5.png', size: '70x70' %></div>
-              <div class="hed-text text-white">CAMB</div>
-              <div class="logo-1"><%= image_tag 'camb_hedlogo4.png', size: '70x70' %></div>
-            </div>
-          <% end %>
-        </div>
-        <div class="col-md-4 text-center text-white mt-3">
-          <div class="btn btn-outline-success mr-5"><%= link_to "　投稿一覧　", post_images_path, class:"text-light" %></div>
-          <div class="btn btn-outline-success mr-3"><%= link_to '　ABOUT　', about_path, class:"text-light" %></div>
-        </div>
-      </div>
-    </div>
+    <%= render 'public/homes/header', current_user: @current_user %>
 
     <div class= "row">
       <div class="col-md-3 text-center text-white"></div>
@@ -37,65 +17,8 @@
     </div>
 
     <div class= "row">
-      <div class="col-md-3 text-center text-white" style="margin-top:0px">
-        <div>
-          <h2>MY PROFILE</h2>
-
-          <div class="text-center" ><%= image_tag @user.get_profile_image(170,170), class:"border border-3" %></div>
-          <h3><%= @user.name %></h3>
-          <div>自己紹介</div>
-          <% if !@user.introduction.blank? %>
-            <h5 class= "border-bottom mt-2 ml-4 mr-4"><%= @user.introduction %></h5>
-          <% else %>
-            <h6 class= "border-bottom">まだ設定していません</h6>
-          <% end %>
-          <table align="center" width="150" height="180">
-            <tr class= "border-bottom">
-              <td>投稿数　:</td>
-              <td><%= @user.post_images.count %>件</td>
-            </tr>
-            <tr class= "border-bottom">
-              <td>Follow　:</td>
-              <td>33</td>
-            </tr>
-            <tr class= "border-bottom">
-              <td>Follower　:</td>
-              <td>33</td>
-            </tr>
-          </table>
-
-          <div class="btn btn-outline-success mt-4"><%= link_to "プロフィール編集", edit_user_path(@user), class:"text-light" %></div>
-          <div class="btn btn-outline-success mt-4"><%= link_to "退会する", unsubscribe_path(@user), class:"text-light" %></div>
-        </div>
-      </div>
-
-      <div class="col-md-9">
-        <div class="d-flex flex-wrap">
-          <% if !@user.post_images.blank? %>
-            <% @post_images.each do |post_image| %>
-              <div class="col-md-3">
-                <div class="card mb-2" style="height: 320px; width: 240px;">
-                  <%= link_to post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>
-                    <%= image_tag post_image.get_image, size: "150x150", class: 'card-img-top' %>
-                    <div class="card-body">
-                      <h5 class="card-title" style="line-height:1rem"><%= post_image.title %></h5>
-                      <p class="card-text text-truncate" style="line-height:1rem"><%= post_image.body %></p>
-                      <p class="card-text" style="line-height:1rem"><%= post_image.favorites.count %> いいね</p>
-                    </div>
-                  <% end %>
-                  <h5 class="card-footer">
-                    <%= image_tag post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
-                    <%= post_image.user.name %>
-                  </h5>
-                </div>
-              </div>
-            <% end %>
-          <% else %>
-            <h5 class="text-light">------投稿がありません------</h5>
-          <% end %>
-        </div>
-      </div>
-
+      <%= render 'public/users/profile', user: @user, post_images: @post_images %>
+      <%= render 'public/post_images/list', post_images: @post_images %>
     </div>
   </div>
 </div>

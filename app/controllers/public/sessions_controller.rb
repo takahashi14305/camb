@@ -25,6 +25,9 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  before_action :authenticate_user!, except: [:top]
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   def guest_sign_in
     user = User.guest
     sign_in user
@@ -35,7 +38,7 @@ class Public::SessionsController < Devise::SessionsController
 
   # 会員の論理削除のための記述。退会後は、同じアカウントでは利用できない。
   def reject_user
-    @user = User.find_by(name: params[:user][:email])
+    @user = User.find_by(email: params[:user][:email])
     if @user
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
@@ -45,5 +48,10 @@ class Public::SessionsController < Devise::SessionsController
       end
     end
   end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  end
+
 
 end

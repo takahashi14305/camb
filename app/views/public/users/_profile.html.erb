@@ -1,0 +1,38 @@
+<div class="col-md-3 text-center text-white" style="margin-top:0px">
+  <div>
+    <% if user == current_user %>
+      <h2>MY PROFILE</h2>
+    <% else%>
+       <h2>PROFILE</h2>
+    <% end %>
+    <%#= link_to users_show_path(user.id) do %>
+      <div class="text-center"><%= image_tag user.get_profile_image(170,170), class:"border border-3" %></div>
+      <h3><%= user.name %></h3>
+    <%# end %>
+    <div>自己紹介</div>
+    <% if !user.introduction.blank? %>
+      <h5 class= "border-bottom mt-2 ml-4 mr-4"><%= user.introduction %></h5>
+    <% else %>
+      <h6 class= "border-bottom">まだ設定していません</h6>
+    <% end %>
+    <table align="center" width="150" height="180">
+      <tr class= "border-bottom">
+        <td>投稿数　:</td>
+        <td><%= user.post_images.count %>件</td>
+      </tr>
+      <tr class= "border-bottom">
+        <td>Follow　:</td>
+        <td>33</td>
+      </tr>
+      <tr class= "border-bottom">
+        <td>Follower　:</td>
+        <td>33</td>
+      </tr>
+    </table>
+    <% if user == current_user %>
+      <div class="btn btn-outline-success mt-4"><%= link_to "プロフィール編集", edit_user_path(current_user), class:"text-light" %></div><br>
+      <div class="btn btn-outline-success mt-4"><%= link_to "退会する", unsubscribe_path(current_user), class:"text-danger" %></div>
+      <div class="btn btn-outline-success mt-4"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-light" %></div>
+    <% end %>
+  </div>
+</div>

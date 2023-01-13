@@ -1,0 +1,73 @@
+<%= stylesheet_link_tag "users", :media => "all" %>
+<div class="container-fluid">
+  <div class="full-page">
+
+    <div class= "hedder">
+      <div class= "row">
+        <div class="col-md-4 text-center text-white pl-5 mt-3">
+          <!--<div class="btn btn-outline-success mr-5"><%#= link_to "マイページ", user_path(current_user.id), class:"text-light" %></div>
+          <div class="btn btn-outline-success mr-3"><%#= link_to '　新規投稿　', new_post_image_path, class:"text-light" %></div>  -->
+          <div class="btn btn-outline-success mr-3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-light" %></div>
+        </div>
+        <div class="col-md-4 text-center text-white">
+          <%= link_to root_path, class:"text-decoration-none" do %>
+            <div class="d-flex justify-content-center">
+              <div class="logo-1"><%= image_tag 'camb_hedlogo5.png', size: '70x70' %></div>
+              <div class="hed-text text-white">CAMB</div>
+              <div class="logo-1"><%= image_tag 'camb_hedlogo4.png', size: '70x70' %></div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-4 text-center text-white mt-3">
+          <!--<div class="btn btn-outline-success mr-5"><%#= link_to "　投稿一覧　", post_images_path, class:"text-light" %></div>
+          <div class="btn btn-outline-success mr-3"><%#= link_to '　ABOUT　', about_path, class:"text-light" %></div>  -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 text-center text-white mt-5">
+      </div>
+      <div class='col-md-2 text-white mt-5 mb-4'>
+        <h2>ユーザー一覧</h2>
+      </div>
+      <div class="col-md-4 text-white mt-5 mb-4">
+        <%= paginate @user, theme: 'bootstrap-5' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 text-center text-white mt-3">
+      </div>
+
+      <div class='col-md-9'>
+        <table class="table text-white table-bordered text-center">
+          <thead>
+            <tr>
+              <th>会員ID</th>
+              <th>名前</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.each do |user| %>
+              <tr>
+                <th class="font-weight-normal"><%= user.id %></th>
+                <th class="font-weight-normal"><%= user.name %></th>
+                <th class="font-weight-normal"><%= user.email %></th>
+                <th><% if user.is_deleted == !true %>
+                    <span class="text-success">有効</span>
+                  <% else %>
+                    <span class="text-danger">退会</span>
+                  <% end %>
+                </th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

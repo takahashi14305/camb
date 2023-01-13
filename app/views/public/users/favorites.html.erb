@@ -1,0 +1,50 @@
+<%= stylesheet_link_tag "users", :media => "all" %>
+<div class="container-fluid">
+  <div class="full-page">
+
+    <%= render 'public/homes/header', current_user: @current_user %>
+
+    <div class= "row">
+      <div class="col-md-3 text-center text-white"></div>
+      <div class="col-md-3 text-white mt-1 mb-1">
+        <h3>自分がイイねした投稿一覧</h3>
+      </div>
+      <div class="col-md-3 text-white mt-1">
+      </div>
+      <div class="col-md-3 text-white mt-1">
+        <%#= paginate @post_images, theme: 'bootstrap-5' %>
+      </div>
+    </div>
+
+    <div class= "row">
+      <%= render 'public/users/profile', user: @current_user, post_images: @post_images %>
+      <div class="col-md-9">
+        <div class="d-flex flex-wrap">
+
+          <% @favorites.each do |favorite| %>
+            <%#= post_image = post_image.find_by(id: favorite.post_image_id) %>
+            <div class="col-md-3">
+              <div class="card mb-2" style="height: 320px; width: 240px;">
+                <%= link_to post_image_path(favorite.post_image.id), class:"text-dark text-decoration-none" do %>
+                  <%= image_tag favorite.post_image.get_image, size: "150x150", class: 'card-img-top' %>
+                  <div class="card-body">
+                    <h5 class="card-title" style="line-height:1rem"><%= favorite.post_image.title %></h5>
+                    <p class="card-text text-truncate" style="line-height:1rem"><%= favorite.post_image.body %></p>
+                    <p class="card-text" style="line-height:1rem"><%= favorite.post_image.favorites.count %> いいね</p>
+                  </div>
+                <% end %>
+                <h5 class="card-footer">
+                  <%= image_tag favorite.post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
+                  <%= favorite.post_image.user.name %>
+                </h5>
+              </div>
+            </div>
+          <% end %>
+          <% if @favorites.empty? %>
+            <h5 class="text-light">------イイねした投稿はありません------</h5>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

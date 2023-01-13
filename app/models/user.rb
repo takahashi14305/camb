@@ -8,6 +8,11 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_one_attached :profile_image
   has_many :favorites, dependent: :destroy
+  
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :followed
+  has_many :followers, through: :reverse_of_relationships, source: :follower
 
   validates :name, presence: true, length: { minimum: 1, maximum: 10 }
   validates :introduction, length: { maximum: 97 }
@@ -31,5 +36,17 @@ class User < ApplicationRecord
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
     end
+  end
+  
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+    # フォローを外すときの処理
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+    # フォローしているか判定
+  def following?(user)
+    followings.include?(user)
   end
 end

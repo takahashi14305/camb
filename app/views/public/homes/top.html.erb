@@ -29,9 +29,11 @@
           <% if user_signed_in? %>
             <div class="btn btn-outline-success mr-3"><%= link_to '投稿フォーム', new_post_image_path, class:"text-light" %></div>
             <div class="btn btn-outline-success mr-3"><%= link_to 'マイページ', user_path(current_user.id), class:"text-light" %></div>
+            <div class="btn btn-outline-success mr-3"><%= link_to "　投稿一覧　", post_images_path, class:"text-light" %></div>
             <div class="btn btn-outline-success"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-light" %></div>
           <% elsif admin_signed_in? %>
-            <div class="btn btn-outline-success"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-light" %></div>
+            <div class="btn btn-outline-success mr-4"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-light" %></div>
+            <div class="btn btn-outline-success"><%= link_to "ユーザー一覧", admin_users_path, class:"text-light" %></div>
           <% else %>
             <div class="btn btn-outline-success mr-4"><%= link_to "新規登録", new_user_registration_path, class:"text-light" %></div>
             <div class="btn btn-outline-success mr-4"><%= link_to "ログイン", new_user_session_path, class:"text-light" %></div>
