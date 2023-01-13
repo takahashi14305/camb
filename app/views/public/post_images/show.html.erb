@@ -33,12 +33,12 @@
               <td><%= @post_image.user.post_images.count %>件</td>
             </tr>
             <tr class= "border-bottom">
-              <td>Follow　:</td>
-              <td><%= @user.followings.count %></td>
+              <td><%= link_to "Follow　:", relationships_followings_path(@user), class:"text-light" %></td>
+              <td><%= link_to @user.followings.count, relationships_followings_path(@user), class:"text-light" %></td>
             </tr>
             <tr class= "border-bottom">
-              <td>Follower　:</td>
-              <td><%= @user.followers.count %></td>
+              <td><%= link_to "Follower　:", relationships_followers_path(@user), class:"text-light" %></td>
+              <td><%= link_to @user.followers.count, relationships_followings_path(@user), class:"text-light"%></td>
             </tr>
           </table>
 
