@@ -5,14 +5,24 @@
     <%= render 'public/homes/header', current_user: @current_user %>
 
     <div class= "row">
-      <div class="col-md-3 text-center text-white"></div>
-      <div class="col-md-3 text-white mt-1">
-        <h3>みんなの投稿一覧</h3>
+      <div class="col-md-6 text-center text-white mt-2 d-flex">
+        <%= search_form_for @search_u, url:user_search_path do |f| %>
+          <!--name_contは、あいまい検索を指定-->
+          <%= f.text_field :name_cont, class: "bg-transparent border border-white text-light ml-5", placeholder: "ユーザー検索" %>
+          <%= f.submit "検索", class: "mr-5" %>
+        <% end %>
+        <h3 class="ml-5">みんなの投稿一覧</h3>
       </div>
-      <div class="col-md-3 text-white mt-1">
+      <div class="col-md-3 text-white mt-2">
+        <%= search_form_for @search_p, url:post_images_search_path do |f| %>
+          <!--name_contは、あいまい検索を指定-->
+          <%= f.text_field :title_cont, size: "13x20", class: "bg-transparent border border-white text-light", placeholder: "投稿検索" %>
+          <%= f.text_field :body_cont, size: "13x20", class: "bg-transparent border border-white text-light", placeholder: "本文検索" %>
+          <%= f.submit "検索" %>
+        <% end %>
       </div>
 
-      <div class="col-md-3 text-white mt-1">
+      <div class="col-md-3 text-white mt-2">
         <%= paginate @post_images, theme: 'bootstrap-5' %>
       </div>
 

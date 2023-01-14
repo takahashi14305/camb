@@ -12,7 +12,7 @@
                 <p class="card-text" style="line-height:1rem"><%= post_image.favorites.count %> いいね</p>
               </div>
             <% end %>
-            <h5 class="card-footer">
+            <h5 class="card-footer" onclick='window.location="<%= users_show_path(post_image.user.id) %>"' role="link">
               <%= image_tag post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
               <%= post_image.user.name %>
             </h5>

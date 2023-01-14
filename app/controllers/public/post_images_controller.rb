@@ -17,7 +17,10 @@ class Public::PostImagesController < ApplicationController
   def index
     @post_images = PostImage.page(params[:page]).per(8)
     @current_user = current_user
-
+    @search_u = User.ransack(params[:q])
+    @search_users = @search_u.result
+    @search_p = PostImage.ransack(params[:p])
+    @search_post_images = @search_p.result
   end
 
   def show
@@ -42,6 +45,11 @@ class Public::PostImagesController < ApplicationController
     post_image = PostImage.find(params[:id])
     post_image.update(post_image_params)
     redirect_to post_image_path(post_image.id)
+  end
+
+  def post_image_search
+    @search_p = PostImage.ransack(params[:p])
+    @search_post_images = @search_p.result
   end
 
   private

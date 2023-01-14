@@ -1,9 +1,14 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_normal_user, only: %i[withdrawal update edit]
+  before_action :user_search
   def show
     @user = User.find(params[:id])
     @post_images = @user.post_images.page(params[:page]).per(8)
     @current_user = current_user
+    @search_u = User.ransack(params[:q])
+    @search_users = @search_u.result
+    @search_p = PostImage.ransack(params[:p])
+    @search_post_images = @search_p.result
   end
 
   def edit
@@ -38,6 +43,11 @@ class Public::UsersController < ApplicationController
       flash[:notice] = "ゲストユーザーは更新･削除できません。"
       redirect_to root_path
     end
+  end
+
+  def user_search
+    @search_u = User.ransack(params[:q])
+    @search_users = @search_u.result
   end
 
   private

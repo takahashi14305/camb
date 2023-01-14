@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     get 'users/favorites' => 'users#favorites'
+    get 'user/search' => 'users#search'
+    get 'post_images/search' => 'post_images#search'
     resources :post_images, only: [:new, :create, :index, :show, :destroy, :edit, :update] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
@@ -31,6 +33,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+
     end
   end
 
