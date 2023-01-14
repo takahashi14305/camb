@@ -61,13 +61,6 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :ensure_normal_user, only: %i[update destroy]
-
-  def ensure_normal_user
-    if resource.email == 'guest@exp.com'
-      redirect_to root_path, alert: 'ゲストユーザーは更新･削除できません。'
-    end
-  end
 
   protected
 

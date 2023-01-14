@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :ensure_normal_user, only: %i[withdrawal update edit]
   def show
     @user = User.find(params[:id])
     @post_images = @user.post_images.page(params[:page]).per(8)
@@ -26,9 +27,17 @@ class Public::UsersController < ApplicationController
   end
 
   def favorites
-    @user = User.find_by(id:params[:id])
+    @user = User.find_by(id: params[:id])
     @current_user = current_user
     @favorites = Favorite.where(user_id: @current_user.id)
+  end
+
+  def ensure_normal_user
+    user = User.find(params[:id])
+    if user.email == 'guest@exp.com'
+      flash[:notice] = "ゲストユーザーは更新･削除できません。"
+      redirect_to root_path
+    end
   end
 
   private

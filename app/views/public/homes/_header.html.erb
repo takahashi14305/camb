@@ -1,8 +1,8 @@
 <div class= "hedder">
   <div class= "row">
-    <div class="col-md-4 text-center text-white pl-5 mt-3">
-      <div class="btn btn-outline-success mr-5"><%= link_to "マイページ", user_path(current_user.id), class:"text-light" %></div>
-      <div class="btn btn-outline-success mr-3"><%= link_to '　新規投稿　', new_post_image_path, class:"text-light" %></div>
+    <div class="col-md-4 text-center text-white pl-5 mt-3 d-flex">
+      <div class="mr-5"><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-outline-success text-light ml-4" %></div>
+      <div class="mr-3"><%= link_to '　新規投稿　', new_post_image_path, class:"btn btn-outline-success text-light ml-3" %></div>
     </div>
     <div class="col-md-4 text-center text-white">
       <%= link_to root_path, class:"text-decoration-none" do %>
@@ -13,10 +13,10 @@
         </div>
       <% end %>
     </div>
-    <div class="col-md-4 text-center text-white mt-3">
-      <div class="btn btn-outline-success mr-3"><%= link_to "　投稿一覧　", post_images_path, class:"text-light" %></div>
-      <div class="btn btn-outline-success mr-3"><%= link_to 'イイね投稿一覧', users_favorites_path, class:"text-light" %></div>
-      <div class="btn btn-outline-success mr-3"><%= link_to '　ABOUT　', about_path, class:"text-light" %></div>
+    <div class="col-md-4 text-center text-white mt-3 d-flex">
+      <div><%= link_to "　投稿一覧　", post_images_path, class:"btn btn-outline-success text-light mr-3" %></div>
+      <div><%= link_to 'イイね投稿一覧', users_favorites_path, class:"btn btn-outline-success text-light mr-3" %></div>
+      <div><%= link_to '　ABOUT　', about_path, class:"btn btn-outline-success text-light" %></div>
     </div>
   </div>
 </div>

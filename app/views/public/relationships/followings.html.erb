@@ -2,25 +2,25 @@
 <div class="container-fluid">
   <div class="full-page">
 
-    <%= render 'public/homes/header', current_user: @current_user %>
+    <%= render 'public/homes/header' %>
 
     <div class= "row">
       <div class="col-md-3 text-center text-white"></div>
-      <div class="col-md-3 text-white mt-1 mb-1">
+      <div class="col-md-3 text-white mt-3 mb-3">
         <h3>フォロー一覧</h3>
       </div>
       <div class="col-md-3 text-white mt-1">
       </div>
       <div class="col-md-3 text-white mt-1">
-        <%= paginate @users, theme: 'bootstrap-5' %>
+        <%#= paginate @user, theme: 'bootstrap-5' %>
       </div>
     </div>
 
     <div class= "row">
       <%= render 'public/users/profile', user: @user, post_images: @post_images %>
-      
-      
-      
+
+      <%= render 'public/relationships/follow', users: @users %>
+
     </div>
   </div>
 </div>

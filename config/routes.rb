@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'relationships/followings'
-  get 'relationships/followers'
+  # get 'relationships/followings'
+  # get 'relationships/followers'
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    get 'users/show'
+    get 'users/show/:id' => 'users#show', as: 'users_show'
     get 'users/edit'
     get "about" => "homes#about"
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
