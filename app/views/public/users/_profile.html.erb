@@ -43,13 +43,13 @@
 
 
       <% unless @user.id == current_user.id %>
-        <% if @haveRoom == true %>
-          <%= link_to "ダイレクトメッセージ", user_rooms_path(@user), method: :post, class:"text-light btn btn-outline-success mt-4" %>
+        <% if @have_room %>
+          <%= link_to "ダイレクトメッセージ", room_path(@room.id), method: :get, class:"text-light btn btn-outline-success mt-4" %>
         <% else %>
-          <%= form_with model: @room, local: true do |f|%>
-            <%= fields_for @RoomUser do |r| %>
-              <%= r.hidden_field :user_id, value: @user.id %>
-            <% end %>
+          <%= form_with model: @room, method: :post, local: true do |f|%>
+
+            <%= f.hidden_field :user_id, value: @user.id %>
+
             <%= f.submit "チャットを始める", class:"text-light btn btn-outline-success mt-4" %>
           <% end %>
         <% end %>

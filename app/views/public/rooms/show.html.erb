@@ -33,7 +33,7 @@
 
 
    <div class="posts">
-     <%= form_with model: @message, local: true do |f| %>
+     <%= form_with model: @message, url: room_messages_path(params[:id]), local: true do |f| %>
        <%= f.text_field :body, placeholder: "メッセージを入力してください" %>
        <%= f.hidden_field :room_id, value: @room.id %>
        <%= f.submit "送信する" %>

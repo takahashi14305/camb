@@ -3,10 +3,10 @@ class Public::RoomsController < ApplicationController
 
   def create
     @room = Room.create
-    user = User.find(params[:user_id])
+    user = User.find(params[:room][:user_id])
     @joinCurrentUser = RoomUser.create(user_id: current_user.id, room_id: @room.id)
     @joinUser = RoomUser.create(room_id: @room.id, user_id: user.id)
-    redirect_to user_room_path(user, @room.id)
+    redirect_to room_path(@room.id)
   end
 
   def show

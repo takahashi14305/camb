@@ -16,12 +16,12 @@ class Public::UsersController < ApplicationController
       @currentRoomUser.each do |cu|    #current_userが参加していルームを取り出す
         @receiveUser.each do |u|    #@userが参加しているルームを取り出す
           if cu.room_id == u.room_id    #current_userと@userのルームが同じか判断(既にルームが作られているか)
-            @haveRoom = true    #falseの時(同じじゃない時)の条件を記述するために変数に代入
-            @roomId = cu.room_id   #ルームが共通しているcurrent_userと@userに対して変数を指定
+            @have_room = true    #falseの時(同じじゃない時)の条件を記述するために変数に代入
+            @room = cu.room   #ルームが共通しているcurrent_userと@userに対して変数を指定
           end
         end
       end
-      unless @haveroom    #ルームが同じじゃなければ
+      unless @have_room    #ルームが同じじゃなければ
         #新しいインスタンスを生成
         @room = Room.new
         @RoomUser = RoomUser.new

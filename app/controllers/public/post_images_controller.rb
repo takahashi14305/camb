@@ -1,4 +1,5 @@
 class Public::PostImagesController < ApplicationController
+  before_action :post_images_search
   def new
     @post_image = PostImage.new
     @current_user = current_user
@@ -18,9 +19,9 @@ class Public::PostImagesController < ApplicationController
     @post_images = PostImage.page(params[:page]).per(8).order(created_at: :desc)
     @current_user = current_user
     @search_u = User.ransack(params[:q])
-    @search_users = @search_u.result
-    @search_p = PostImage.ransack(params[:p])
-    @search_post_images = @search_p.result
+    #@search_users = @search_u.result
+    @search_p = PostImage.ransack(params[:q])
+    #@search_post_images = @search_p.result
   end
 
   def show
@@ -47,8 +48,8 @@ class Public::PostImagesController < ApplicationController
     redirect_to post_image_path(post_image.id)
   end
 
-  def post_image_search
-    @search_p = PostImage.ransack(params[:p])
+  def post_images_search
+    @search_p = PostImage.ransack(params[:q])
     @search_post_images = @search_p.result
   end
 
