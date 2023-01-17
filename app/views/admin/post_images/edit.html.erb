@@ -1,3 +1,4 @@
+
 <%= stylesheet_link_tag "users", :media => "all" %>
 <div class="container-fluid">
   <div class="full-page">
@@ -30,7 +31,7 @@
       <div class= "row">
         <div class= "col-md-12 text-center text-white">
           <div style="margin-top:3px"><%= f.submit "編集完了", class:"btn btn-outline-success" %></div>
-          <div class="mt-3"><%= link_to "戻る", user_path(@post_image.user.id), class:"btn btn-outline-success" %></div>
+          <div class="mt-3"><%= link_to "戻る", admin_post_image_path(@post_image), class:"btn btn-outline-success" %></div>
         </div>
       </div>
 

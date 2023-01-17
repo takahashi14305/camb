@@ -2,15 +2,14 @@
 <div class="container-fluid">
   <div class="full-page">
 
-    <%= render 'public/homes/header' %>
+    <%= render 'admin/users/header' %>
 
     <div class= "row">
       <div class="col-md-3 text-center text-white"></div>
       <div class="col-md-3 text-white mt-3 mb-3">
-        <h3>フォロー一覧</h3>
+        <h3>検索結果</h3>
       </div>
-      <div class="col-md-3 text-white mt-3">
-        <%= paginate @users, theme: 'bootstrap-5' %>
+      <div class="col-md-3 text-white mt-1">
       </div>
       <div class="col-md-3 text-white mt-1">
         <%#= paginate @user, theme: 'bootstrap-5' %>
@@ -18,10 +17,15 @@
     </div>
 
     <div class= "row">
-      <%= render 'public/users/profile', user: current_user, post_images: @post_images %>
+      <div class="col-md-3 text-white mt-1">
+      </div>
 
-      <%= render 'public/relationships/follow', users: @users %>
-
+        <%# if !@search_post_images.blank? %>
+          <%= render 'admin/post_images/list', post_images: @search_post_images %>
+        <%# else %>
+          <!--<p>検索した投稿はありません</p> -->
+        <%# end %>
+      </div>
     </div>
   </div>
 </div>

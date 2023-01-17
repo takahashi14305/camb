@@ -27,14 +27,21 @@
                     </div>
                   <% else %>
                     <div class="d-flex justify-content-between">
-                      <%= link_to post_image_favorites_path(post_image), method: :post do %>
-                        ♡<%= post_image.favorites.count %>
-                        <div class="">
-                          <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ post_image.user.name }の投稿をシェア】%0a%0a#{ post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
-                            <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
-                          <% end %>
-                        </div>
-                      <% end %>
+                      <div>
+                        <%= link_to post_image_favorites_path(post_image), method: :post do %>
+                          ♡<%= post_image.favorites.count %>
+                        <% end %>
+                      </div>
+                      <div>
+
+                        <%= post_image.post_comments.count %>
+                      </div>
+                      <div class="">
+                        <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ post_image.user.name }の投稿をシェア】%0a%0a#{ post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
+                          <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
+                        <% end %>
+                      </div>
+
                     </div>
                   <% end %>
                 </p>
@@ -52,4 +59,9 @@
       <h5 class="text-light">------投稿がありません------</h5>
     <% end %>
   </div>
+</div>% end %>
+  </div>
+</div>
+  </div>
+</div> </div>
 </div>

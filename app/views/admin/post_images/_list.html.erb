@@ -27,6 +27,7 @@
                     </div>
                   <%# else %>
                     <div class="d-flex justify-content-between">
+                      ♡<%= post_image.favorites.count %>
                       <%#= link_to post_image_favorites_path(post_image), method: :post do %>
                      <!--   ♡<%#= post_image.favorites.count %> -->
                         <div class="">
@@ -41,7 +42,7 @@
               <% end %>
             </div>
 
-            <h5 class="card-footer" onclick='window.location="<%= users_show_path(post_image.user.id) %>"' role="link">
+            <h5 class="card-footer" onclick='window.location="<%= admin_user_path(post_image.user.id) %>"' role="link">
               <%= image_tag post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
               <%= post_image.user.name %>
             </h5>

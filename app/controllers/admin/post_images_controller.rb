@@ -21,7 +21,7 @@ class Admin::PostImagesController < ApplicationController
     @post_image = PostImage.find(params[:id])
     @post_image.destroy
     @user = current_user
-    redirect_to user_path(@user.id)
+    redirect_to admin_user_path(@post_image.user)
   end
 
   def edit
@@ -31,7 +31,7 @@ class Admin::PostImagesController < ApplicationController
   def update
     post_image = PostImage.find(params[:id])
     post_image.update(post_image_params)
-    redirect_to post_image_path(post_image.id)
+    redirect_to admin_post_image_path(post_image.id)
   end
 
   def post_images_search

@@ -29,8 +29,7 @@
 
           <table align="center" width="150" height="180">
             <tr class= "border-bottom">
-              <td>投稿数　:</td>
-              <td><%= @post_image.user.post_images.count %>件</td>
+              <td><%= "投稿数　: #{@post_image.user.post_images.count}" %> 件</td>
             </tr>
             <tr class= "border-bottom">
               <td><%= link_to "Follow　: 　#{@user.followings.count}", user_followings_path(@user.id), class:"text-light" %></td>

@@ -11,7 +11,7 @@
           <%= f.text_field :name_cont, class: "bg-transparent border border-white text-light ml-5", placeholder: "ユーザー検索" %>
           <%= f.submit "検索", class: "mr-5"%>
         <% end %>
-        <h3 class="ml-5"><%= @user.name %>の投稿一覧</h3>
+        <h3 class="ml-5">投稿一覧(新着順)</h3>
       </div>
       <div class="col-md-3 text-white mt-2">
         <%= search_form_for @search_p, url:admin_post_images_search_path do |f| %>
@@ -27,7 +27,8 @@
     </div>
 
     <div class= "row">
-      <%= render 'admin/users/profile', user: @user, post_images: @post_images %>
+      <div class="col-md-3"></div>
+      <%#= render 'admin/users/profile', user: @user, post_images: @post_images %>
       <%= render 'admin/post_images/list', post_images: @post_images %>
     </div>
   </div>
