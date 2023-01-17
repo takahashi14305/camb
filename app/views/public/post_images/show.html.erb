@@ -109,14 +109,16 @@
               <div class="d-flex justify-content-center">
                 <% if @post_image.favorited_by?(current_user) %>
                   <div class="mr-5">
-                    <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
-                      ♥<%= @post_image.favorites.count %> いいね
+                    <%= link_to post_image_favorites_path(@post_image), method: :delete, class:"d-flex" do %>
+                      <div class="text-danger">♥</div>
+                      <div class="text-dark"><%= @post_image.favorites.count %> イイね</div>
                     <% end %>
                   </div>
                 <% else %>
                   <div class="mr-5 mt-2">
-                    <%= link_to post_image_favorites_path(@post_image), method: :post do %>
-                      ♡<%= @post_image.favorites.count %> いいね
+                    <%= link_to post_image_favorites_path(@post_image), method: :post, class:"d-flex" do %>
+                      <div class="text-danger">♡</div>
+                      <div class="text-dark"><%= @post_image.favorites.count %> イイね</div>
                     <% end %>
                   </div>
                 <%end %>
