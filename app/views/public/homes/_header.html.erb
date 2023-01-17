@@ -14,8 +14,10 @@
       <% end %>
     </div>
     <div class="col-md-4 text-center text-white mt-3 d-flex">
-      <div><%= link_to "　投稿一覧　", post_images_path, class:"btn btn-outline-success text-light mr-3" %></div>
+      <div><%= link_to "　新着投稿　", post_images_path, class:"btn btn-outline-success text-light mr-3" %></div>
       <div><%= link_to 'イイね投稿一覧', users_favorites_path, class:"btn btn-outline-success text-light mr-3" %></div>
+      <div><%= link_to 'イイね多い順', post_images_favorite_path, class:"btn btn-outline-success text-light mr-3" %></div>
+      <div><%= link_to 'フォロー投稿', users_follow_path, class:"btn btn-outline-success text-light mr-3" %></div>
       <div><%= link_to '　ABOUT　', about_path, class:"btn btn-outline-success text-light" %></div>
     </div>
   </div>

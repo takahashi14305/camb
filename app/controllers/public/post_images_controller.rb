@@ -53,6 +53,11 @@ class Public::PostImagesController < ApplicationController
     @search_post_images = @search_p.result
   end
 
+  def favorite
+    @current_user = current_user
+    @post_images = PostImage.favorites.order("favorites_count DESC").select("post_images.*")
+  end
+
   private
 
   def post_image_params

@@ -23,8 +23,11 @@ Rails.application.routes.draw do
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     get 'users/favorites' => 'users#favorites'
+    get 'users/follow' => 'users#follow'
     get 'user/search' => 'users#search'
     get 'post_images/search' => 'post_images#search'
+    get 'post_images/favorite' => 'post_images#favorite'
+
     resources :rooms, only: [:create, :show] do
       resources :messages, only: [:create]
     end

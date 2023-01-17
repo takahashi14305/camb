@@ -56,6 +56,11 @@ class Public::UsersController < ApplicationController
     @favorites = Favorite.where(user_id: @current_user.id)
   end
 
+  def follow
+    @user = User.find_by(id: params[:id])
+    #@followings = Follow.where(user_id: @current_user.id)
+    @posts = PostImage.where(user_id: [*current_user.following_ids])
+  end
   def ensure_normal_user
     user = User.find(params[:id])
     if user.email == 'guest@exp.com'
