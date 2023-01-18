@@ -53,35 +53,10 @@
 
         <div class="col-md-6">
           <div class="card" style="height: 650px;">
-            <%= image_tag @post_image.get_image, class: 'card-img-top' %>
+            <%= image_tag @post_image.get_image, size: "550x450", class: 'card-img-top' %>
             <div class="card-body">
-              <div class="row">
-                <div class="col-md-2">
-                  <h6 class="card-title">コメント欄　<%= @post_image.post_comments.count %>件</h6>
-                </div>
-                <div class="col-md-6">
-                  <% @post_image.post_comments.each do |post_comment| %>
-                    <table>
-                      <tr>
-                        <td rowspan="2"><%= image_tag post_comment.user.get_profile_image(30,30), class:"rounded-circle"; %></td>
-                        <td><%= post_comment.user.name %>　<%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-                      </tr>
-                      <tr>
-                        <td><%= post_comment.comment %>
-                            <% if post_comment.user == current_user %>
-                               <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete %>
-                           <% end %>
-                        </td>
-                      </tr>
-                    </table>
-                  <% end %>
-                </div>
-                <div class="col-md-4">
-                  <%= form_with model: [@post_image, @post_comment] do |f| %>
-                    <%= f.text_area :comment, size: "20x2", placeholder: "コメントを入力" %>
-                    <%= f.submit "送信する" %>
-                  <% end %>
-                </div>
+              <div class="row" id="post_comment_form_<%= @post_image.id %>">
+                <%= render "public/post_comments/post_comments", post_image: @post_image, post_comment: @post_comment %>
               </div>
             </div>
             <h5 class="card-footer">
@@ -106,21 +81,9 @@
 
             <div class="card-footer">
               <div class="d-flex justify-content-center">
-                <% if @post_image.favorited_by?(current_user) %>
-                  <div class="mr-3">
-                    <%= link_to post_image_favorites_path(@post_image), method: :delete, class:"d-flex" do %>
-                      <div class="text-danger">♥</div>
-                      <div class="text-dark"><%= @post_image.favorites.count %></div>
-                    <% end %>
-                  </div>
-                <% else %>
-                  <div class="mr-3">
-                    <%= link_to post_image_favorites_path(@post_image), method: :post, class:"d-flex" do %>
-                      <div class="text-danger">♡</div>
-                      <div class="text-dark"><%= @post_image.favorites.count %></div>
-                    <% end %>
-                  </div>
-                <%end %>
+                <div id="favorite_buttons_<%= @post_image.id %>" class="mr-4" >
+                  <%= render "public/favorites/favorite", post_image: @post_image %>
+                </div>
 
                 <div class="mr-3">
                   <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ @post_image.user.name }の投稿をシェア】%0a%0a#{ @post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
