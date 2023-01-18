@@ -6,20 +6,11 @@
 
     <div class= "row">
       <div class="col-md-6 text-center text-white mt-2 d-flex">
-        <%= search_form_for @search_u, url:user_search_path do |f| %>
-          <!--name_contは、あいまい検索を指定-->
-          <%= f.text_field :name_cont, class: "bg-transparent border border-white text-light ml-5", placeholder: "ユーザー検索" %>
-          <%= f.submit "検索", class: "mr-5" %>
-        <% end %>
+        <%= render 'public/search/user_search', search_u: @search_u %>
         <h3 class="ml-5">みんなの投稿(新着順)</h3>
       </div>
       <div class="col-md-3 text-white mt-2">
-        <%= search_form_for @search_p, url:post_images_search_path do |f| %>
-          <!--name_contは、あいまい検索を指定-->
-          <%= f.text_field :title_cont, size: "13x20", class: "bg-transparent border border-white text-light", placeholder: "タイトル検索" %>
-          <%= f.text_field :body_cont, size: "13x20", class: "bg-transparent border border-white text-light", placeholder: "本文検索" %>
-          <%= f.submit "検索" %>
-        <% end %>
+        <%= render 'public/search/post_search', search_p: @search_p %>
       </div>
 
       <div class="col-md-3 text-white mt-2">

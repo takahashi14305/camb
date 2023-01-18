@@ -1,14 +1,3 @@
-
-
-<% if @post_image.errors.any? %>
-  <%= @post_image.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post_image.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= stylesheet_link_tag "users", :media => "all" %>
 <div class="container-fluid">
   <div class="full-page">
@@ -19,8 +8,9 @@
     </div>
     <%= form_with model: @post_image do |f| %>
       <div class= "row">
-        <div class= "col-md-12 text-center text-white">
-          
+        <div class= "col-md-4"></div>
+        <div class= "col-md-4 text-center text-white">
+
           <table align="center" style="height: 380px">
             <tr>
               <td><label for="inputName">画像</label></td>
@@ -35,7 +25,15 @@
               <td><%= f.text_area :body, class: "bg-transparent border border-white text-white", size: "30x7" %></td>
             </tr>
           </table>
-          
+
+        </div>
+        <div class= "col-md-4 text-center text-white">
+          <% if @post_image.errors.any? %>
+            <h4><%= @post_image.errors.count %>件のエラーが発生しました</h4>
+            <% @post_image.errors.full_messages.each do |message| %>
+              <h4><%= message %></h4>
+            <% end %>
+          <% end %>
         </div>
       </div>
 

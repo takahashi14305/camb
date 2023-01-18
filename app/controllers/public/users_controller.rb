@@ -53,13 +53,17 @@ class Public::UsersController < ApplicationController
   def favorites
     @user = User.find_by(id: params[:id])
     @current_user = current_user
-    @favorites = Favorite.where(user_id: @current_user.id)
+    @favorites = Favorite.where(user_id: @current_user.id).page(params[:page]).per(8).order(created_at: :desc)
+    @search_u = User.ransack(params[:q])
+    @search_p = PostImage.ransack(params[:p])
   end
 
   def follow
     @user = User.find_by(id: params[:id])
     #@followings = Follow.where(user_id: @current_user.id)
-    @posts = PostImage.where(user_id: [*current_user.following_ids])
+    @posts = PostImage.where(user_id: [*current_user.following_ids]).page(params[:page]).per(8).order(created_at: :desc)
+    @search_u = User.ransack(params[:q])
+    @search_p = PostImage.ransack(params[:p])
   end
   def ensure_normal_user
     user = User.find(params[:id])

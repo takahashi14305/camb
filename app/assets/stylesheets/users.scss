@@ -76,3 +76,54 @@
 .users {
   cursor: pointer;
 }
+
+.z-index-1{
+  z-index: 1;
+  position: relative;
+}
+
+.z-index-2{
+  z-index: 2;
+  position: relative;
+}
+
+.container-fluid2 {
+  background-image: image-url('camb_post14.jpg');
+  background-size: cover;
+  background-position: bottom;
+  height:100%;
+  width:100%;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  //opacity: 0.4;
+  font-family: serif;
+}
+
+.container-fluid2::before {
+  content: '';
+  /* ↓暗いオーバーレイを半透明で配置 */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* ↓全体を覆うように配置 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.about-top {
+  font-size: 55px;
+}
+
+.about-body {
+  font-size: 30px;
+  letter-spacing: 3px;
+  line-height: 50px;
+}
+
+.about-foot {
+  letter-spacing: 2px;
+  line-height: 35px;
+}

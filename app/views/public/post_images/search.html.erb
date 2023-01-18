@@ -5,14 +5,15 @@
     <%= render 'public/homes/header' %>
 
     <div class= "row">
-      <div class="col-md-3 text-center text-white"></div>
-      <div class="col-md-3 text-white mt-3 mb-3">
-        <h3>検索結果</h3>
+      <div class="col-md-6 text-center text-white mt-2 d-flex">
+        <%= render 'public/search/user_search', search_u: @search_u %>
+        <h3 class="ml-5">検索結果</h3>
       </div>
-      <div class="col-md-3 text-white mt-1">
+      <div class="col-md-3 text-white mt-2">
+        <%= render 'public/search/post_search', search_p: @search_p %>
       </div>
-      <div class="col-md-3 text-white mt-1">
-        <%#= paginate @user, theme: 'bootstrap-5' %>
+      <div class="col-md-3 text-white mt-2">
+        <%= paginate @search_post_images, theme: 'bootstrap-5' %>
       </div>
     </div>
 
@@ -24,7 +25,6 @@
         <%# else %>
           <!--<p>検索した投稿はありません</p> -->
         <%# end %>
-      </div>
     </div>
   </div>
 </div>

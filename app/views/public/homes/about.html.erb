@@ -1,1 +1,35 @@
-aboutページです
+<%= stylesheet_link_tag "users", :media => "all" %>
+
+<div class="container-fluid2">
+  <div class="full-page">
+    <%= render 'public/homes/header', current_user: current_user %>
+    <div class= "row">
+      <div class="col-md-10 offset-md-1 text-white">
+        <h1 class="about-top mt-5">キャンプに行って自然を感じろ</h1>
+        <div class="about-body mt-4">
+          「 幸福 」 「 癒し 」 「 免疫 」<br>
+          自然はヒトにあらゆる恩恵を与え、絶大な効果をもたらしてくれる。<br>
+          これはイギリスの大学の研究で２万人以上に調査を行った結果だ。<br>
+          自然から幸福を感じるのにかかる時間はわずか０.２秒。<br>
+          こちらもフィンランドの研究から分かったことだ。<br>
+          もう説明しなくても分かるだろう。
+        </div>
+      </div>
+    </div>
+    <div class= "row">
+      <div class="col-md-8 offset-md-4 text-white">
+        <h5 class="about-foot mt-4">
+          CAMB は、キャンプ好きのみんなが集まるクラブのようなものです。<br>
+          キャンプにまつわる情報だけがここにあります。<br>
+          キャンプは好きだけど、簡単に行けないから写真を見る。そんな人にもお勧めです。<br>
+          世界には、知らない世界が無限にあり、キャンプも楽しむ方法が無限にあります。<br>
+          みんながまだ知らない自分が見つけたことやキャンプライフをこの CAMB を通じて、<br>
+          知ってもらおう。
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
