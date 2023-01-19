@@ -9,6 +9,7 @@ class Public::PostImagesController < ApplicationController
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     if @post_image.save
+      flash[:notice] = "投稿が成功しました"
       redirect_to post_images_path
     else
       render :new
@@ -34,6 +35,7 @@ class Public::PostImagesController < ApplicationController
   def destroy
     @post_image = PostImage.find(params[:id])
     @post_image.destroy
+    flash[:notice] = "投稿を削除しました"
     @user = current_user
     redirect_to user_path(@user.id)
   end
@@ -45,6 +47,7 @@ class Public::PostImagesController < ApplicationController
   def update
     post_image = PostImage.find(params[:id])
     post_image.update(post_image_params)
+    flash[:notice] = "編集が完了しました"
     redirect_to post_image_path(post_image.id)
   end
 
@@ -66,6 +69,6 @@ class Public::PostImagesController < ApplicationController
   private
 
   def post_image_params
-    params.require(:post_image).permit(:title, :image, :body)
+    params.require(:post_image).permit(:title, :body, image: [])
   end
 end

@@ -41,19 +41,25 @@
           <% if @post_image.user == current_user %>
             <div class=""><%= link_to "プロフィール編集", edit_user_path(@current_user), class:"text-light btn btn-outline-success mt-4" %></div>
           <% else%>
+
             <% if current_user.following?(@user) %>
               <div class=""><%= link_to "フォロー中", user_relationships_path(@user.id), method: :delete, class:"text-light btn btn-outline-success mt-4" %></div>
             <% else %>
               <div class=""><%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"text-light btn btn-outline-success mt-4" %></div>
             <% end %>
           <% end %>
+          <h5 class="mt-5"><%= flash[:notice] %></h5>
 
         </div>
       </div>
 
         <div class="col-md-6">
           <div class="card" style="height: 650px;">
-            <%= image_tag @post_image.get_image, size: "550x450", class: 'card-img-top' %>
+            <div class="images">
+              <% @post_image.image.each do |image|%>
+                <%= image_tag image, class: 'card-img-top' %>
+              <% end %>
+            </div>
             <div class="card-body">
               <div class="row" id="post_comment_form_<%= @post_image.id %>">
                 <%= render "public/post_comments/post_comments", post_image: @post_image, post_comment: @post_comment %>
@@ -93,7 +99,7 @@
                 </div>
 
                 <% if @post_image.user == current_user %>
-                  <div class=""><%= link_to "削除", post_image_path(@post_image), method: :delete, class:"text-danger btn btn-outline-success mr-4" %></div>
+                  <div class=""><%= link_to "削除", post_image_path(@post_image), method: :delete, "data-confirm" => "本当に削除しますか？", class:"text-danger btn btn-outline-success mr-4" %></div>
                   <div class=""><%= link_to "編集", edit_post_image_path(@post_image.id), class:"text-dark btn btn-outline-success" %></div>
                 <% end %>
               </div>
@@ -105,13 +111,3 @@
   </div>
 </div>
 
-<script>
-  $(document).on('turbolinks:load', function() {
-    $('.jscroll-div').jscroll({ // 追加したdivのclass名と合わせる
-      contentSelector: '.jscroll',
-      nextSelector: '.next a',  // 次ページリンクのセレクタ
-      loadingHtml: '読み込み中',
-      padding: 10
-    });
-  });
-</script>

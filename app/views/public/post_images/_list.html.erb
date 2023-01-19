@@ -5,7 +5,7 @@
         <div class="z-index-1 col-md-3">
           <div class="card mb-2" style="height: 320px; width: 240px;">
             <%= link_to post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>
-              <%= image_tag post_image.get_image, size: "150x150", class: 'card-img-top' %>
+              <%= image_tag post_image.image[0], size: "150x150", class: 'card-img-top' %>
             <% end %>
             <div class="card-body">
               <%= link_to post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>

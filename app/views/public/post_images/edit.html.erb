@@ -13,7 +13,7 @@
           <table align="center" style="height: 380px">
             <tr>
               <td><label for="inputName">画像</label></td>
-              <td><%= f.file_field :image, accept: "image/*" %></td>
+              <td><%= f.file_field :image, accept: "image/*", multiple: true %></td>
             </tr>
             <tr>
               <td><label for="inputIntroduction">タイトル</label></td>
