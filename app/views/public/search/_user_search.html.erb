@@ -1,5 +1,5 @@
 <%= search_form_for search_u, url:user_search_path do |f| %>
   <!--name_contは、あいまい検索を指定-->
-  <%= f.text_field :name_cont, class: "bg-transparent border border-white text-light ml-5", placeholder: "ユーザー検索" %>
-  <%= f.submit "検索", class: "mr-5" %>
+  <%= f.text_field :name_cont, size: "22x20", class: "bg-transparent border border-white text-light", placeholder: "ユーザー検索" %>
+  <%= f.submit "検索" %>
 <% end %>
