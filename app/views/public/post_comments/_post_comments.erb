@@ -2,25 +2,29 @@
   <h6 class="card-title">コメント欄　<%= post_image.post_comments.count %>件</h6>
 </div>
 <div class="col-md-6">
-  <% post_image.post_comments.each do |post_comment| %>
-    <table>
-      <tr>
-        <td rowspan="2"><%= image_tag post_comment.user.get_profile_image(30,30), class:"rounded-circle"; %></td>
-        <td><%= post_comment.user.name %>　<%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-      </tr>
-      <tr>
-        <td><%= post_comment.comment %>
-            <% if post_comment.user == current_user %>
-               <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, remote: true %>
-           <% end %>
-        </td>
-      </tr>
-    </table>
-  <% end %>
+  <div class='jscroll-div'>
+    <% post_image.post_comments.each do |post_comment| %>
+      <table>
+        <tr>
+          <td rowspan="2"><%= image_tag post_comment.user.get_profile_image(30,30), class:"rounded-circle"; %></td>
+          <td><%= post_comment.user.name %>　<%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <td><%= post_comment.comment %>
+              <% if post_comment.user == current_user %>
+                 <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, remote: true %>
+             <% end %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
 </div>
 <div class="col-md-4">
   <%= form_with model: [post_image, post_comment], local: false do |f| %>
     <%= f.text_area :comment, size: "20x2", placeholder: "コメントを入力" %>
     <%= f.submit "送信する" %>
   <% end %>
+  <%#= paginate comment, theme: 'bootstrap-5' %>
+
 </div>
