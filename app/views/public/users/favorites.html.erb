@@ -5,12 +5,12 @@
     <%= render 'public/homes/header', current_user: @current_user %>
 
     <div class= "row">
-      <div class="col-md-6 text-center text-white mt-2 d-flex">
-        <%= render 'public/search/user_search', search_u: @search_u %>
-        <h3 class="ml-5">イイねした投稿一覧</h3>
+      <div class="col-md-3 text-center text-white mt-2">
+        <div><%= render 'public/search/user_search', search_u: @search_u %></div>
+        <div><%= render 'public/search/post_search', search_p: @search_p %></div>
       </div>
-      <div class="col-md-3 text-white mt-2">
-        <%= render 'public/search/post_search', search_p: @search_p %>
+      <div class="col-md-5 text-white mt-2">
+        <h3 class="ml-2">イイねした投稿一覧</h3>
       </div>
       <div class="col-md-3 text-white mt-2">
         <%= paginate @favorites, theme: 'bootstrap-5' %>
@@ -27,7 +27,7 @@
             <div class="col-md-3">
               <div class="card mb-2" style="height: 320px; width: 240px;">
                 <%= link_to post_image_path(favorite.post_image.id), class:"text-dark text-decoration-none" do %>
-                  <%= image_tag favorite.post_image.get_image, size: "150x150", class: 'card-img-top' %>
+                  <%= image_tag favorite.post_image.image[0], size: "150x150", class: 'card-img-top' %>
                 <% end %>
                 <div class="card-body">
                   <%= link_to post_image_path(favorite.post_image.id), class:"text-dark text-decoration-none" do %>
