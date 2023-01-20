@@ -12,6 +12,7 @@
   padding: 0;
   //opacity: 0.4;
   font-family: serif;
+  position: fixed;
 }
 
 .container-fluid::before {
@@ -143,6 +144,11 @@
 .box {
   width:300px;
   height:90px;
+}
+
+.box2 {
+  width:1070px;
+  height:620px;
 }
 
 .scroll {
