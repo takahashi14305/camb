@@ -23,41 +23,43 @@
       </div>
 
       <div class='col-md-9'>
-        <table class="table text-white table-bordered text-center">
-          <thead>
-            <tr>
-              <th>会員ID</th>
-              <th></th>
-              <th>名前</th>
-              <th>メールアドレス</th>
-              <th>ステータス</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user.each do |user| %>
-              <tr class="users" onclick='window.location="<%= admin_user_path(user.id) %>"' role="link">
-                <th class="font-weight-normal"><%= user.id %></th>
-                <th><%= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %></th>
-                <th class="font-weight-normal"><%= user.name %></th>
-                <th class="font-weight-normal"><%= user.email %></th>
-                <th><% if user.is_deleted %>
-                    <span class="text-danger">退会</span>
-                  <% else %>
-                    <span class="text-success">有効</span>
-                  <% end %>
-                </th>
-                <th>
-                  <% if user.is_deleted %>
-                      <%= link_to "復帰させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを復帰させますか？", class:"text-light btn btn-outline-success" %>
-                  <% else %>
-                    <%= link_to "退会させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを退会させますか？", class:"text-danger btn btn-outline-success" %>
-                  <% end %>
-                </th>
+        <div class='box3 scroll'>
+          <table class="table text-white table-bordered text-center">
+            <thead>
+              <tr>
+                <th>会員ID</th>
+                <th></th>
+                <th>名前</th>
+                <th>メールアドレス</th>
+                <th>ステータス</th>
+                <th></th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @user.each do |user| %>
+                <tr class="users" onclick='window.location="<%= admin_user_path(user.id) %>"' role="link">
+                  <th class="font-weight-normal"><%= user.id %></th>
+                  <th><%= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %></th>
+                  <th class="font-weight-normal"><%= user.name %></th>
+                  <th class="font-weight-normal"><%= user.email %></th>
+                  <th><% if user.is_deleted %>
+                      <span class="text-danger">退会</span>
+                    <% else %>
+                      <span class="text-success">有効</span>
+                    <% end %>
+                  </th>
+                  <th>
+                    <% if user.is_deleted %>
+                        <%= link_to "復帰させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを復帰させますか？", class:"text-light btn btn-outline-success" %>
+                    <% else %>
+                      <%= link_to "退会させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを退会させますか？", class:"text-danger btn btn-outline-success" %>
+                    <% end %>
+                  </th>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>

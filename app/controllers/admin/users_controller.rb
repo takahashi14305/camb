@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :user_search
 
   def index
-    @user = User.page(params[:page]).per(10)
+    @user = User.page(params[:page]).per(20)
   end
 
   def show
