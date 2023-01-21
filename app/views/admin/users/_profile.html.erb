@@ -8,9 +8,9 @@
     <%# end %>
     <div>自己紹介</div>
     <% if !user.introduction.blank? %>
-      <h5 class= "border-bottom mt-2 ml-4 mr-4"><%= user.introduction %></h5>
+      <div class= "introduction border-bottom mt-2 ml-4 mr-4"><%= user.introduction %></div>
     <% else %>
-      <h6 class= "border-bottom">まだ設定していません</h6>
+      <div class= "introduction border-bottom">まだ設定していません</div>
     <% end %>
     <table align="center" width="220" height="180">
       <tr class= "border-bottom">

@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 1, maximum: 10 }
-  validates :introduction, length: { maximum: 97 }
+  validates :introduction, length: { maximum: 95 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?

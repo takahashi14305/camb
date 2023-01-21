@@ -5,6 +5,7 @@
       <% if !post_images.blank? %>
         <% post_images.each do |post_image| %>
           <div class="z-index-1 col-md-4 mb-2">
+
             <div class="card mb-2" style="height: 385px; width: 310px;">
               <%= link_to admin_post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>
                 <%= image_tag post_image.image[0], size: "200x200", class: 'card-img-top' %>
@@ -13,29 +14,32 @@
               <div class="card-body">
                 <%= link_to admin_post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>
                   <h5 class="card-title text-truncate"><%= post_image.title %></h5>
-                  <p class="card-text" style="line-height:1.5"><%= post_image.body.truncate(49) %></p>
+                  <p class="card-text" style="line-height:1.5"><%= post_image.body.truncate(33) %></p>
                   <!--<div>閲覧数: <%#= post_image.view_counts.count %></div> -->
                 <% end %>
               </div>
+              <ul class="list-group list-group-flush text-center">
+                <div class=" d-flex text-center">
+                  <div class="mr-5" id="favorite_buttons_<%= post_image.id %>" >
+                    <%= render "public/favorites/favorite", post_image: post_image %>
+                  </div>
+                  <div class="mr-5">
+                    <i class="far fa-comment"></i>
+                    <%= post_image.post_comments.count %>
+                  </div>
+                  <div class="text-right">
+                    <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ post_image.user.name }の投稿をシェア】%0a%0a#{ post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
+                      <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
+                    <% end %>
+                  </div>
+                </div>
+              </ul>
 
               <div class="card-footer d-flex"> <!--  onclick='window.location="<%#= users_show_path(favorite.post_image.user.id) %>"' role="link" -->
                 <%= link_to admin_user_path(post_image.user.id), class:"d-flex" do %>
-                  <div><%= image_tag post_image.user.get_profile_image(30,30), class:"rounded-circle"; %></div>
-                  <h5 class="mr-4 text-dark"><%= post_image.user.name %></h5>
+                  <div><%= image_tag post_image.user.get_profile_image(25,25), class:"rounded-circle"; %></div>
+                  <h5 class="post-name mr-4 mt-1 text-dark"><%= post_image.user.name %></h5>
                 <% end %>
-                <div class="mr-4 d-flex">
-                  <div class="text-danger">♡</div>
-                  <div class="text-dark"><%= post_image.favorites.count %></div>
-                </div>
-                <div class="mr-4">
-                  <i class="far fa-comment"></i>
-                  <%= post_image.post_comments.count %>
-                </div>
-                <div>
-                  <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ post_image.user.name }の投稿をシェア】%0a%0a#{ post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
-                    <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
-                  <% end %>
-                </div>
               </div>
 
             </div>

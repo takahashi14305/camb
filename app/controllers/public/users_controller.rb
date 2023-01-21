@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: %i[withdrawal update edit]
+  before_action :ensure_normal_user, only: %i[withdrawal create update edit]
   before_action :user_search
   def show
     @user = User.find(params[:id])
@@ -68,7 +68,7 @@ class Public::UsersController < ApplicationController
   def ensure_normal_user
     user = User.find(params[:id])
     if user.email == 'guest@exp.com'
-      flash[:notice] = "ゲストユーザーは更新･削除できません。"
+      flash[:notice] = "ゲストユーザーは投稿･更新･削除できません。"
       redirect_to root_path
     end
   end
