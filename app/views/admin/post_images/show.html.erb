@@ -102,6 +102,14 @@
 
             <div class="card-footer">
               <div class="d-flex justify-content-center">
+
+                <div class="text-danger">♡</div>
+                <div class="text-dark mr-3"><%= @post_image.favorites.count %></div>
+                <div class="mr-3">
+                  <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ @post_image.user.name }の投稿をシェア】%0a%0a#{ @post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
+                    <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
+                  <% end %>
+                </div>
                 <!--<%# if @post_image.favorited_by?(current_user) %>
                   <div class="mr-5">
                     <%#= link_to post_image_favorites_path(@post_image), method: :delete do %>

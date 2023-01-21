@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: %i[withdrawal update edit]
+  #before_action :ensure_normal_user
   before_action :user_search
 
   def index
@@ -30,10 +30,9 @@ class Admin::UsersController < ApplicationController
   def withdrawal
     @user = User.find(params[:id])
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
-    @user.update(is_deleted: true)
-    reset_session
-    flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path
+    @user.update(is_deleted: !@user.is_deleted)
+    flash[:notice] = "ステータス変更を実行いたしました"
+    redirect_to admin_users_path
   end
 
   def favorites
@@ -42,13 +41,13 @@ class Admin::UsersController < ApplicationController
     @favorites = Favorite.where(user_id: @current_user.id)
   end
 
-  def ensure_normal_user
-    user = User.find(params[:id])
-    if user.email == 'guest@exp.com'
-      flash[:notice] = "ゲストユーザーは更新･削除できません。"
-      redirect_to root_path
-    end
-  end
+ # def ensure_normal_user
+   # @user = User.find(params[:id])
+  #  if user.email == 'guest@exp.com'
+  #    flash[:notice] = "ゲストユーザーは更新･削除できません。"
+  #    redirect_to root_path
+  #  end
+ # end
 
   def user_search
     @search_u = User.ransack(params[:q])

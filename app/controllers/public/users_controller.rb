@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: %i[withdrawal create update edit]
+  before_action :ensure_normal_user, only: %i[follow withdrawal update edit]
   before_action :user_search
   def show
     @user = User.find(params[:id])
@@ -9,10 +9,10 @@ class Public::UsersController < ApplicationController
     @search_users = @search_u.result
     @search_p = PostImage.ransack(params[:p])
     @search_post_images = @search_p.result
-    @currentRoomUser = RoomUser.where(user_id: current_user.id)  #current_userが既にルームに参加しているか判断
+    @currentRoomUser = RoomUser.where(user_id: @current_user)  #current_userが既にルームに参加しているか判断
     @receiveUser = RoomUser.where(user_id: @user.id)  #他の@userがルームに参加しているか判断
 
-    unless @user.id == current_user.id  #current_userと@userが一致していなければ
+    unless @user.id == @current_user  #current_userと@userが一致していなければ
       @currentRoomUser.each do |cu|    #current_userが参加していルームを取り出す
         @receiveUser.each do |u|    #@userが参加しているルームを取り出す
           if cu.room_id == u.room_id    #current_userと@userのルームが同じか判断(既にルームが作られているか)
@@ -38,7 +38,11 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if admin_signed_in?
+      redirect_to admin_user_path(@user.id)
+    else
+      redirect_to user_path(@user.id)
+    end
   end
 
   def withdrawal
@@ -65,6 +69,7 @@ class Public::UsersController < ApplicationController
     @search_u = User.ransack(params[:q])
     @search_p = PostImage.ransack(params[:p])
   end
+
   def ensure_normal_user
     user = User.find(params[:id])
     if user.email == 'guest@exp.com'

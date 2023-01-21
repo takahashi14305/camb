@@ -11,7 +11,7 @@
             再度ご利用をいただく場合には、新規登録のお手続きが必要になります。<br>
             本当に退会してよろしいですか？
           </div>
-           <%= link_to "退会する", withdrawal_path, method: :patch, "data-confilm" => "本当に退会しますか？", class:"text-danger btn btn-outline-success mt-5" %>
+           <%= link_to "退会する", withdrawal_path, method: :patch, "data-confirm" => "本当に退会しますか？", class:"text-danger btn btn-outline-success mt-5" %>
            <%= link_to "退会しない", user_path(current_user), class:"btn btn-outline-success ml-5 mt-5" %>
         </div>
       </div>

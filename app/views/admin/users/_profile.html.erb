@@ -1,7 +1,10 @@
 <div class="col-md-3 text-center text-white" style="margin-top:0px">
   <div>
-
+    <% if user.is_deleted %>
+      <h4 class="mt-2">このユーザーは退会済みです</h4>
+    <% else %>
     <h2>PROFILE</h2>
+    <% end %>
     <%#= link_to users_show_path(user.id) do %>
       <div class="text-center"><%= image_tag user.get_profile_image(170,170), class:"border border-3" %></div>
       <h3><%= user.name %></h3>
@@ -12,7 +15,7 @@
     <% else %>
       <div class= "introduction border-bottom">まだ設定していません</div>
     <% end %>
-    <table align="center" width="220" height="180">
+    <table align="center" width="220" height="140">
       <tr class= "border-bottom">
         <td><%= "投稿数　:　 #{user.post_images.count}" %> 件</td>
       </tr>
@@ -28,9 +31,17 @@
       </tr>
     </table>
 
+
       <div><%= link_to "プロフィール編集", edit_admin_user_path(user), class:"text-light btn btn-outline-success mt-4" %></div>
-      <div class=""><%#= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-light btn btn-outline-success mt-4" %></div>
-      <div class=""><%= link_to "退会する", unsubscribe_path(user), class:"text-danger btn btn-outline-success mt-4" %></div>
+      <%#= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-light btn btn-outline-success mt-4" %>
+      <% if user.is_deleted %>
+          <%= link_to "復帰させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを復帰させますか？", class:"text-light btn btn-outline-success mt-2" %>
+      <% else %>
+        <%= link_to "退会させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを退会させますか？", class:"text-danger btn btn-outline-success mt-2" %>
+      <% end %>
+
+
+
 
   </div>
 </div>

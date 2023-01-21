@@ -3,12 +3,17 @@
     <% if user == current_user %>
       <h2>MY PROFILE</h2>
     <% else%>
+      <% if user.is_deleted %>
+        <h2>このユーザーは退会済みです</h2>
+      <% else %>
        <h2>PROFILE</h2>
+      <% end %>
     <% end %>
     <%#= link_to users_show_path(user.id) do %>
       <div class="text-center"><%= image_tag user.get_profile_image(170,170), class:"border border-3" %></div>
       <h3><%= user.name %></h3>
     <%# end %>
+
     <div>自己紹介</div>
     <% if !user.introduction.blank? %>
       <div class= "introduction border-bottom mt-2 ml-4 mr-4"><%= user.introduction %></div>

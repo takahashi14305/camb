@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'user/search' => 'users#search'
     get 'post_images/search' => 'post_images#search'
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :users, only: [:index, :show, :edit, :update]
     resources :post_images, only: [:index, :show, :destroy, :edit, :update] do
       resource :favorites, only: [:create, :destroy]

@@ -1,4 +1,5 @@
 class Public::PostImagesController < ApplicationController
+  before_action :ensure_normal_user, only: %i[new create destroy update edit]
   before_action :post_images_search
   def new
     @post_image = PostImage.new
@@ -9,7 +10,7 @@ class Public::PostImagesController < ApplicationController
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     if @post_image.save
-      flash[:notice] = "投稿が成功しました"
+      flash[:notice] = "投稿に成功しました"
       redirect_to post_images_path
     else
       render :new
@@ -64,6 +65,14 @@ class Public::PostImagesController < ApplicationController
     @post_images = Kaminari.paginate_array(post_image).page(params[:page]).per(16)
     @search_p = PostImage.ransack(params[:q])
     @search_u = User.ransack(params[:q])
+  end
+
+  def ensure_normal_user
+    user = current_user
+    if user.email == 'guest@exp.com'
+      flash[:notice] = "ゲストユーザーは投稿できません。"
+      redirect_to root_path
+    end
   end
 
   private

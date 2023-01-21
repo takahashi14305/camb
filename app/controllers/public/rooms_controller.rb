@@ -1,4 +1,5 @@
 class Public::RoomsController < ApplicationController
+  before_action :ensure_normal_user, only: %i[create show]
   before_action :authenticate_user!
 
   def create
@@ -17,6 +18,14 @@ class Public::RoomsController < ApplicationController
       @RoomUsers = @room.users
     else
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def ensure_normal_user
+    user = current_user
+    if user.email == 'guest@exp.com'
+      flash[:notice] = "ゲストユーザーはチャットできません。"
+      redirect_to root_path
     end
   end
 
