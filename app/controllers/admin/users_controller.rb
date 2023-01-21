@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images.page(params[:page]).per(8).order(created_at: :desc)
+    @post_images = @user.post_images.page(params[:page]).per(16).order(created_at: :desc)
     @current_user = current_user
     @search_u = User.ransack(params[:q])
     @search_users = @search_u.result

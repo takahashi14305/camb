@@ -4,21 +4,24 @@
       <% if !post_images.blank? %>
         <% post_images.each do |post_image| %>
           <div class="z-index-1 col-md-4 mb-2">
-            <div class="card mb-2" style="height: 380px; width: 310px;">
+            <div class="card mb-2" style="height: 385px; width: 310px;">
               <%= link_to post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>
                 <%= image_tag post_image.image[0], size: "200x200", class: 'card-img-top' %>
+                <h9 class="pb-1"><i class="fas fa-camera"></i><%= post_image.image.count %></h9>
               <% end %>
               <div class="card-body">
                 <%= link_to post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>
-                  <h5 class="card-title text-truncate" style="line-height:1rem"><%= post_image.title %></h5>
-                  <p class="card-text text-truncate text-break" style="line-height:1rem"><%= post_image.body %></p>
+                  <h5 class="card-title text-truncate"><%= post_image.title %></h5>
+                  <p class="card-text" style="line-height:1.5"><%= post_image.body.truncate(49) %></p>
                   <!--<div>閲覧数: <%#= post_image.view_counts.count %></div> -->
                 <% end %>
               </div>
 
-              <div class="card-footer d-flex" onclick='window.location="<%= users_show_path(post_image.user.id) %>"' role="link">
-                <div><%= image_tag post_image.user.get_profile_image(30,30), class:"rounded-circle"; %></div>
-                <h5 class="mr-4"><%= post_image.user.name %></h5>
+              <div class="card-footer d-flex"> <!--  onclick='window.location="<%#= users_show_path(favorite.post_image.user.id) %>"' role="link" -->
+                <%= link_to users_show_path(post_image.user.id), class:"d-flex" do %>
+                  <div><%= image_tag post_image.user.get_profile_image(30,30), class:"rounded-circle"; %></div>
+                  <h5 class="mr-4 text-dark"><%= post_image.user.name %></h5>
+                <% end %>
                 <div class="mr-4" id="favorite_buttons_<%= post_image.id %>" >
                   <%= render "public/favorites/favorite", post_image: post_image %>
                 </div>

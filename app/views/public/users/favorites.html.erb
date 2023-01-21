@@ -21,48 +21,48 @@
       <%= render 'public/users/profile', user: @current_user, post_images: @post_images %>
 
       <div class="col-md-9">
-        <div class="d-flex flex-wrap">
+        <div class='box2 scroll'>
+          <div class="d-flex flex-wrap">
 
-          <% @favorites.each do |favorite| %>
-            <div class="col-md-3">
-              <div class="card mb-2" style="height: 320px; width: 240px;">
-                <%= link_to post_image_path(favorite.post_image.id), class:"text-dark text-decoration-none" do %>
-                  <%= image_tag favorite.post_image.image[0], size: "150x150", class: 'card-img-top' %>
-                <% end %>
-                <div class="card-body">
+            <% @favorites.each do |favorite| %>
+              <div class="z-index-1 col-md-4 mb-2">
+                <div class="card mb-2" style="height: 385px; width: 310px;">
                   <%= link_to post_image_path(favorite.post_image.id), class:"text-dark text-decoration-none" do %>
-                    <h5 class="card-title text-truncate" style="line-height:1rem"><%= favorite.post_image.title %></h5>
-                    <p class="card-text text-truncate" style="line-height:1rem"><%= favorite.post_image.body %></p>
-                    <!--<div>閲覧数: <%#= post_image.view_counts.count %></div> -->
-                    <p class="card-text">
-                      <div class="d-flex">
-
-                        <div class="favorite_buttons" >
-                          <%= render "public/favorites/favorite", post_image: favorite.post_image %>
-                        </div>
-                        <div class="mr-5 ml-4">
-                          <i class="far fa-comment"></i>
-                          <%= favorite.post_image.post_comments.count %>
-                        </div>
-                        <div>
-                          <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ favorite.post_image.user.name }の投稿をシェア】%0a%0a#{ favorite.post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
-                            <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
-                          <% end %>
-                        </div>
-                      </div>
-                    </p>
+                    <%= image_tag favorite.post_image.image[0], size: "200x200", class: 'card-img-top' %>
+                    <h9 class="pb-1"><i class="fas fa-camera"></i><%= favorite.post_image.image.count %></h9>
                   <% end %>
+
+                  <div class="card-body">
+                    <%= link_to post_image_path(favorite.post_image.id), class:"text-dark text-decoration-none" do %>
+                      <h5 class="card-title text-truncate"><%= favorite.post_image.title %></h5>
+                      <p class="card-text" style="line-height:1.5"><%= favorite.post_image.body.truncate(49) %></p>
+                    <% end %>
+                  </div>
+                  <div class="card-footer d-flex">
+                    <%= link_to users_show_path(favorite.post_image.user.id), class:"d-flex text-dark text-decoration-none" do %>
+                      <div><%= image_tag favorite.post_image.user.get_profile_image(30,30), class:"rounded-circle"; %></div>
+                      <h5 class="mr-4"><%= favorite.post_image.user.name %></h5>
+                    <% end %>
+                    <div class="mr-4 text-decoration-none" id="favorite_buttons_<%= favorite.post_image.id %>" >
+                      <%= render "public/favorites/favorite", post_image: favorite.post_image %>
+                    </div>
+                    <div class="mr-4">
+                      <i class="far fa-comment"></i>
+                      <%= favorite.post_image.post_comments.count %>
+                    </div>
+                    <div>
+                      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ favorite.post_image.user.name }の投稿をシェア】%0a%0a#{ favorite.post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
+                        <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
-                <h5 class="card-footer" onclick='window.location="<%= users_show_path(favorite.post_image.user.id) %>"' role="link">
-                  <%= image_tag favorite.post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
-                  <%= favorite.post_image.user.name %>
-                </h5>
               </div>
-            </div>
-          <% end %>
-          <% if @favorites.empty? %>
-            <h5 class="text-light">------投稿がありません------</h5>
-          <% end %>
+            <% end %>
+            <% if @favorites.empty? %>
+              <h5 class="text-light">------投稿がありません------</h5>
+            <% end %>
+          </div>
         </div>
       </div>
 

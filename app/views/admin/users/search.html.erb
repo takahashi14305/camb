@@ -29,7 +29,7 @@
                 <th>投稿数</th>
                 <th>フォロー </th>
                 <th>フォロワー</th>
-                <th></th>
+                <th>ステータス</th>
               </tr>
             </thead>
             <tbody>
@@ -40,6 +40,12 @@
                   <td><%= user.post_images.count %></td>
                   <td><%= user.followings.count %></td>
                   <td><%= user.followers.count %></td>
+                  <th><% if user.is_deleted == !true %>
+                　    <span class="text-success">有効</span>
+                　  <% else %>
+                　    <span class="text-danger">退会</span>
+                　  <% end %>
+                　</th>
                 </tr>
               <% end %>
             </tbody>

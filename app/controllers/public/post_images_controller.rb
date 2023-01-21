@@ -53,7 +53,7 @@ class Public::PostImagesController < ApplicationController
 
   def post_images_search
     @search_p = PostImage.ransack(params[:q])
-    @search_post_images = @search_p.result.page(params[:page]).per(8).order(created_at: :desc)
+    @search_post_images = @search_p.result.page(params[:page]).per(16).order(created_at: :desc)
     @search_u = User.ransack(params[:q])
   end
 
@@ -61,7 +61,7 @@ class Public::PostImagesController < ApplicationController
     @current_user = current_user
     #@post_images = PostImage.favorites.order("favorites_count DESC").select("post_images.*")
     post_image = PostImage.find(Favorite.group(:post_image_id).order('count(post_image_id) DESC').pluck(:post_image_id))
-    @post_images = Kaminari.paginate_array(post_image).page(params[:page]).per(8)
+    @post_images = Kaminari.paginate_array(post_image).page(params[:page]).per(16)
     @search_p = PostImage.ransack(params[:q])
     @search_u = User.ransack(params[:q])
   end
