@@ -5,7 +5,7 @@
     <div class= "row">
       <div class="col-md-3 text-center text-white mt-2">
       </div>
-     <div class="col-md-5 text-white mt-2">
+     <div class="col-md-5 text-white mt-4">
         <h3 class="ml-2">DM一覧</h3>
       </div>
 
@@ -17,7 +17,39 @@
 
     <div class= "row">
       <%= render 'public/users/profile', user: @current_user %>
+
       <div class="col-md-9 text-white mt-2">
+        <div class='box5 scroll'>
+          <table border="1" rules="rows" width="1000px">
+            <thead>
+              <tr>
+                <th width="20%">名前</th>
+                <th width="20%">日時</th>
+                <th class="text-truncate" width="60%">最新メッセージ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%# @another_user.each do |another_user| %>
+                <tr class="users" onclick='window.location="<%#= user_path(user.id) %>"' role="link">
+                  <td>
+                    <%#= link_to user_path(user.id) do %>
+                      <%#= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %><%#= user.name %>
+                    <%# end %>
+                  </td>
+                  <td>
+                    <%#= @messages.created_at.strftime("%Y-%m-%d %H:%M") %>
+                  </td>
+                  <td>
+                    <%#= 最後のメッセージ %>
+                    <%# @rooms.each do |room| %>
+                      <%#= room.messages.order(created_at: :desc).take.try(:content) %><br>
+                    <%# end %>
+                  </td>
+                </tr>
+              <%# end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 

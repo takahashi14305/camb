@@ -29,6 +29,10 @@ class Public::RoomsController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def index
+    
+  end
 
   private
 
