@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get 'post_images/search' => 'post_images#search'
     get 'post_images/favorite' => 'post_images#favorite'
 
-    resources :rooms, only: [:create, :show] do
+    resources :rooms, only: [:create, :show, :index] do
       resources :messages, only: [:create]
     end
     resources :post_images, only: [:new, :create, :index, :show, :destroy, :edit, :update] do

@@ -1,5 +1,5 @@
 class Public::RoomsController < ApplicationController
-  before_action :ensure_normal_user, only: %i[create show]
+  before_action :ensure_normal_user, only: %i[create show index]
   before_action :authenticate_user!
 
   def create
@@ -16,6 +16,7 @@ class Public::RoomsController < ApplicationController
       @messages = @room.messages
       @message = Message.new
       @RoomUsers = @room.users
+      @another_user = (@RoomUsers.where.not(id: current_user.id).to_a)[0] #自分ではない相手の情報
     else
       redirect_back(fallback_location: root_path)
     end
@@ -24,7 +25,7 @@ class Public::RoomsController < ApplicationController
   def ensure_normal_user
     user = current_user
     if user.email == 'guest@exp.com'
-      flash[:notice] = "ゲストユーザーはチャットできません。"
+      flash[:notice] = "ゲストユーザーはDMできません。"
       redirect_to root_path
     end
   end

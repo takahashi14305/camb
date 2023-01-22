@@ -2,8 +2,9 @@
 <div class= "hedder">
   <div class= "row">
     <div class="col-md-4 text-center text-white pl-5 mt-3 d-flex">
-      <div class="mr-5"><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-outline-success text-light ml-4" %></div>
-      <div class="mr-3"><%= link_to '　新規投稿　', new_post_image_path, class:"btn btn-outline-success text-light ml-3" %></div>
+      <div class=""><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-outline-success text-light ml-1" %></div>
+      <div class=""><%= link_to "D M", rooms_path, class:"btn btn-outline-success text-light ml-5" %></div>
+      <div class=""><%= link_to '　新規投稿　', new_post_image_path, class:"btn btn-outline-success text-light ml-5" %></div>
     </div>
     <div class="col-md-4 text-center text-white">
       <%= link_to root_path, class:"text-decoration-none" do %>

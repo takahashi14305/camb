@@ -14,7 +14,7 @@
 .container-fluid::before {
   content: '';
   /* ↓暗いオーバーレイを半透明で配置 */
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
   /* ↓全体を覆うように配置 */
   position: absolute;
   top: 0;

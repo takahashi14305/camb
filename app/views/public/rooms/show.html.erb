@@ -48,17 +48,21 @@
       <% end %>
 
       <div class="chats col-md-5">
-        <h1 class="mt-4 text-center mb-3">メッセージ</h1>
-          <div class="chat">
+        <h1 class="mt-4 text-center mb-3"><%= @another_user.name %>さんとの D M</h1>
+          <div class='box4 scroll'>
             <% if @messages.present? %>
               <% @messages.each do |m| %>
-                <div class="chat-box mt-2">
+                <div class="chat-box ">
                   <div class="chat-text">
-                    <table>
+                    <table width="680px" class="mb-3">
                       <tr>
-                    <td><%= m.body %></td>
-                    <td><%= m.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-                    </tr>
+                        <td width="17%"><%= m.user.name %></td>
+                        <td width="83%"><%= m.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td><%= m.body %></td>
+                      </tr>
                     </table>
                   </div>
                 </div>
@@ -71,15 +75,14 @@
 
     </div>
       <div class= "row text-white">
-        <div class="col-md-6 text-center text-white mt-5"></div>
-          <div class="col-md-6 text-center text-white mt-5">
+        <div class="col-md-6 text-center text-white mt-4"></div>
+          <div class="col-md-6 text-center text-white mt-4">
             <%= form_with model: @message, url: room_messages_path(params[:id]), local: true do |f| %>
               <%= f.text_area :body, placeholder: "メッセージを入力してください", class: "bg-transparent border border-white text-white", size: "40x4" %>
               <%= f.hidden_field :room_id, value: @room.id %>
               <%= f.submit "送信する" %>
             <% end %>
           </div>
-
-
+      </div>
   </div>
 </div>
