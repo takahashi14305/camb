@@ -4,7 +4,7 @@
 
     <div class= "row">
       <div class="col-md-4 text-center text-white" style="margin-top:150px">
-        <div class="top-left">キャンプを楽しむ仲間がいる。<br>山 、川 、森 、</br>知らない場所が無限にある。<br>楽しむ方法が無限にある。</br>知らない世界がここにある。</div>
+        <div class="top-left"><%= link_to "キ", new_admin_session_path, class:"text-white text-decoration-none" %>ャンプを楽しむ仲間がいる。<br>山 、川 、森 、</br>知らない場所が無限にある。<br>楽しむ方法が無限にある。</br>知らない世界がここにある。</div>
       </div>
       <div class="col-md-4 text-center text-white">
         <div class="logo-1"><%= image_tag 'logo3.png', size: '400x400' %></div>
@@ -37,7 +37,7 @@
           <% elsif admin_signed_in? %>
           <div class="d-flex text-center">
             <div class=""><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"text-light btn btn-outline-success mr-3 ml-5" %></div>
-            <div class=""><%= link_to "ユーザー一覧", admin_users_path, class:"text-light btn btn-outline-success mr-3" %></div>
+            <div class=""><%= link_to "ユーザ一覧", admin_users_path, class:"text-light btn btn-outline-success mr-3" %></div>
             <div class=""><%= link_to "投稿一覧", admin_post_images_path, class:"text-light btn btn-outline-success" %></div>
           </div>
           <% else %>

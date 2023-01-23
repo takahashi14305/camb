@@ -39,6 +39,7 @@
       <% else %>
         <%= link_to "退会させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを退会させますか？", class:"text-danger btn btn-outline-success mt-2" %>
       <% end %>
+      <h5 class="mt-3"><%= flash[:notice] %></h5>
 
 
 

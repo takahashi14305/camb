@@ -27,9 +27,14 @@
               <a href="#" class="dropdown-toggle btn btn-outline-success text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">投稿表示を変える</a>
               <ul class="dropdown-menu">
                 <li class="dropdown-item"><%= link_to "　新着投稿　", post_images_path, class:"btn btn-outline-success text-dark" %></li>
-                <li class="dropdown-item"><%= link_to 'イイねした投稿', users_favorites_path, class:"btn btn-outline-success text-dark" %></li>
                 <li class="dropdown-item"><%= link_to 'イイね多い順', post_images_favorite_path, class:"btn btn-outline-success text-dark" %></li>
-                <li class="dropdown-item"><%= link_to 'フォローユーザの投稿', users_follow_path, class:"btn btn-outline-success text-dark" %></li>
+                <% if current_user.email == 'guest@exp.com' %>
+                  <li class="dropdown-item"><div class="guesttexst">以下2項目は登録済み<br>であれば閲覧可能</div><div class="btn btn-outline-success text-dark">イイねした投稿</div></li>
+                  <li class="dropdown-item"><div class="btn btn-outline-success text-dark">フォローユーザの投稿</div></li>
+                <% else %>
+                  <li class="dropdown-item"><%= link_to 'イイねした投稿', users_favorites_path, class:"btn btn-outline-success text-dark" %></li>
+                  <li class="dropdown-item"><%= link_to 'フォローユーザの投稿', users_follow_path, class:"btn btn-outline-success text-dark" %></li>
+                <% end %>
               </ul>
             </li>
           </ul>

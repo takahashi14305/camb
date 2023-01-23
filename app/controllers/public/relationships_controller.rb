@@ -25,7 +25,7 @@ class Public::RelationshipsController < ApplicationController
     user = current_user
     if user.email == 'guest@exp.com'
       flash[:notice] = "ゲストユーザーはフォローできません。"
-      redirect_to root_path
+      redirect_to user_path(user.id)
     end
   end
 end

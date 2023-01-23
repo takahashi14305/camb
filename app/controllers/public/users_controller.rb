@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: %i[follow withdrawal update edit]
+  before_action :ensure_normal_user, only: %i[withdrawal update edit]
   before_action :user_search
   def show
     @user = User.find(params[:id])
@@ -39,8 +39,10 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     if admin_signed_in?
+      flash[:notice] = "編集が完了いたしました"
       redirect_to admin_user_path(@user.id)
     else
+      flash[:notice] = "編集が完了いたしました"
       redirect_to user_path(@user.id)
     end
   end
@@ -73,8 +75,8 @@ class Public::UsersController < ApplicationController
   def ensure_normal_user
     user = User.find(params[:id])
     if user.email == 'guest@exp.com'
-      flash[:notice] = "ゲストユーザーは投稿･更新･削除できません。"
-      redirect_to root_path
+      flash[:notice] = "ゲストユーザーは更新･削除･フォローできません。"
+      redirect_to user_path(user.id)
     end
   end
 

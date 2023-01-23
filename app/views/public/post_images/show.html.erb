@@ -50,6 +50,7 @@
           <% end %>
           <h5 class="mt-5"><%= flash[:notice] %></h5>
 
+
         </div>
       </div>
 
@@ -80,7 +81,9 @@
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p class="card-text"><%= @post_image.body %></p>
+                <div class='box6 scroll'>
+                  <p class="card-text"><%= @post_image.body %></p>
+                </div>
                 <footer class="blockquote-footer">投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></footer>
                 <footer class="blockquote-footer">編集日：<%= @post_image.updated_at.strftime('%Y/%m/%d') %></footer>
               </blockquote>
@@ -88,7 +91,7 @@
 
             <div class="card-footer">
               <div class="d-flex justify-content-center">
-                
+
                 <div id="favorite_buttons_<%= @post_image.id %>" class="mr-4" >
                   <%= render "public/favorites/favorite", post_image: @post_image %>
                 </div>

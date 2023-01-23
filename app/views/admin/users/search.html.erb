@@ -30,6 +30,7 @@
                 <th>フォロー </th>
                 <th>フォロワー</th>
                 <th>ステータス</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -45,6 +46,13 @@
                 　  <% else %>
                 　    <span class="text-danger">退会</span>
                 　  <% end %>
+                　</th>
+                　<th>
+                　   <% if user.is_deleted %>
+                      <%= link_to "復帰させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを復帰させますか？", class:"text-light btn btn-outline-success mt-2" %>
+                    <% else %>
+                      <%= link_to "退会させる", admin_withdrawal_path(user.id), method: :patch, "data-confirm" => "本当に#{user.name}さんを退会させますか？", class:"text-danger btn btn-outline-success mt-2" %>
+                    <% end %>
                 　</th>
                 </tr>
               <% end %>

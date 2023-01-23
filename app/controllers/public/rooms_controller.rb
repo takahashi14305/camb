@@ -26,7 +26,7 @@ class Public::RoomsController < ApplicationController
     user = current_user
     if user.email == 'guest@exp.com'
       flash[:notice] = "ゲストユーザーはDMできません。"
-      redirect_to root_path
+      redirect_to user_path(user.id)
     end
   end
   

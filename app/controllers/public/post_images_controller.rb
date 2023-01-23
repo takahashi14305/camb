@@ -47,9 +47,13 @@ class Public::PostImagesController < ApplicationController
 
   def update
     post_image = PostImage.find(params[:id])
-    post_image.update(post_image_params)
-    flash[:notice] = "編集が完了しました"
-    redirect_to post_image_path(post_image.id)
+    if post_image.update(post_image_params)
+      flash[:notice] = "編集が完了しました"
+      redirect_to post_image_path(post_image.id)
+    else
+      flash[:notice] = "編集に失敗しました。"
+      redirect_to post_image_path(post_image.id)
+    end
   end
 
   def post_images_search
@@ -70,8 +74,8 @@ class Public::PostImagesController < ApplicationController
   def ensure_normal_user
     user = current_user
     if user.email == 'guest@exp.com'
-      flash[:notice] = "ゲストユーザーは投稿できません。"
-      redirect_to root_path
+      flash[:notice] = "ゲストユーザーは閲覧のみ可能です。"
+      redirect_to user_path(user.id)
     end
   end
 
