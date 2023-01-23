@@ -5,9 +5,7 @@ class Public::PostCommentsController < ApplicationController
     @post_comment = PostComment.new
     comment = current_user.post_comments.new(post_comment_params)
     comment.post_image_id = @post_image.id
-    if comment.save
-      redirect_to post_images_path
-    end
+    comment.save
     #redirect_to post_image_path(post_image)
   end
 
@@ -22,8 +20,8 @@ class Public::PostCommentsController < ApplicationController
     user = current_user
     if user.email == 'guest@exp.com'
       flash[:notice] = "ゲストユーザーはコメントできません。"
+      redirect_to post_images_path
     end
-    redirect_to user_path(user.id)
   end
 
   private

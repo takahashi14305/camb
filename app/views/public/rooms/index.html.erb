@@ -29,24 +29,21 @@
               </tr>
             </thead>
             <tbody>
-              <%# @another_user.each do |another_user| %>
-                <tr class="users" onclick='window.location="<%#= user_path(user.id) %>"' role="link">
+              <% @rooms.each do |room| %>
+                <tr>
                   <td>
-                    <%#= link_to user_path(user.id) do %>
-                      <%#= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %><%#= user.name %>
-                    <%# end %>
+                    <%= link_to user_path(room.users.where.not(id: current_user.id)[0].id), class:"text-white" do %>
+                      <%= image_tag room.users.where.not(id: current_user.id)[0].get_profile_image(30,30), class:"rounded-circle"; %><%= room.users.where.not(id: current_user.id)[0].name %>
+                    <% end %>
                   </td>
                   <td>
-                    <%#= @messages.created_at.strftime("%Y-%m-%d %H:%M") %>
+                    <%= link_to room.messages.last.created_at.strftime("%Y-%m-%d %H:%M"), room_path(room.id), class:"text-white" %>
                   </td>
                   <td>
-                    <%#= 最後のメッセージ %>
-                    <%# @rooms.each do |room| %>
-                      <%#= room.messages.order(created_at: :desc).take.try(:content) %><br>
-                    <%# end %>
+                    <%= link_to room.messages.last.body, room_path(room.id), class:"text-white text-truncate" %>
                   </td>
                 </tr>
-              <%# end %>
+              <% end %>
             </tbody>
           </table>
         </div>

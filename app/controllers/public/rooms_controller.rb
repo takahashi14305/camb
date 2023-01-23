@@ -29,9 +29,15 @@ class Public::RoomsController < ApplicationController
       redirect_to user_path(user.id)
     end
   end
-  
+
   def index
-    
+    room_users = RoomUser.where(user_id: current_user.id)
+    room_ids = room_users.pluck(:room_id)
+    @rooms = Room.where(id: room_ids)
+
+    # @last_messages = rooms.map { |r| r.messages.last }
+    # another_user_ids = RoomUser.where.not(user_id: current_user.id, room_id: room_ids).pluck(:user_id)
+    # @another_users = User.where(id: another_user_ids)
   end
 
   private

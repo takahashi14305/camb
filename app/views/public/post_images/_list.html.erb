@@ -6,7 +6,7 @@
           <div class="z-index-1 col-md-4 mb-2">
             <div class="card mb-2" style="height: 385px; width: 310px;">
               <%= link_to post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>
-                <%= image_tag post_image.image[0], size: "200x200", class: 'card-img-top' %>
+                <%= image_tag post_image.image[0], size: "200x200", loading: "lazy", class: 'card-img-top' %>
                 <h9 class="pb-1"><i class="fas fa-camera"></i><%= post_image.image.count %></h9>
               <% end %>
               <div class="card-body">
