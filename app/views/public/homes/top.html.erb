@@ -7,7 +7,9 @@
         <div class="top-left"><%= link_to "キ", new_admin_session_path, class:"text-white text-decoration-none" %>ャンプを楽しむ仲間がいる。<br>山 、川 、森 、</br>知らない場所が無限にある。<br>楽しむ方法が無限にある。</br>知らない世界がここにある。</div>
       </div>
       <div class="col-md-4 text-center text-white">
-        <div class="logo-1"><%= image_tag 'logo3.png', size: '400x400' %></div>
+        <%= link_to about_path do %>
+          <div class="logo-1"><%= image_tag 'logo3.png', size: '400x400' %></div>
+        <% end %>
         <div class="top-english">CAMB is like a club where everyone gets together.<br> And share their camp life with each other. <br>Enjoy yourselves to the fullest!</div>
       </div>
       <div class="col-md-4 text-white">
