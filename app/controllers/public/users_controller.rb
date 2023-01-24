@@ -78,7 +78,7 @@ class Public::UsersController < ApplicationController
   def ensure_normal_user
     user = User.find(params[:id])
     if user.email == 'guest@exp.com'
-      flash[:notice] = "ゲストユーザーは更新･削除･フォローできません。"
+      flash[:notice] = "ゲストユーザーは編集･退会できません。"
       redirect_to user_path(user.id)
     end
   end
