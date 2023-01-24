@@ -8,7 +8,8 @@
     </div>
     <%= form_with model: @user do |f| %>
       <div class= "row">
-        <div class= "col-md-12 text-center text-white">
+        <div class= "col-md-4 text-center text-white"></div>
+        <div class= "col-md-4 text-center text-white">
           <table align="center" style="height: 200px">
             <tr>
               <td><label for="inputName">名前</label></td>
@@ -22,8 +23,15 @@
               <td><label for="inputImage">Profile Image</label></td>
               <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
             </tr>
-
           </table>
+        </div>
+        <div class= "col-md-4 text-center text-white">
+          <% if @user.errors.any? %>
+            <h4><%= @user.errors.count %>件のエラーが発生しました</h4>
+            <% @user.errors.full_messages.each do |message| %>
+              <h4><%= message %></h4>
+            <% end %>
+          <% end %>
         </div>
       </div>
 

@@ -37,13 +37,16 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    if admin_signed_in?
-      flash[:notice] = "編集が完了いたしました"
-      redirect_to admin_user_path(@user.id)
+    if @user.update(user_params)
+      if admin_signed_in?
+        flash[:notice] = "編集が完了いたしました"
+        redirect_to admin_user_path(@user.id)
+      else
+        flash[:notice] = "編集が完了いたしました"
+        redirect_to user_path(@user.id)
+      end
     else
-      flash[:notice] = "編集が完了いたしました"
-      redirect_to user_path(@user.id)
+      redirect_to edit_user_path(@user.id)
     end
   end
 

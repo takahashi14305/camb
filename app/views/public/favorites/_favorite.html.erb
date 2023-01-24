@@ -1,11 +1,19 @@
-<% if post_image.favorited_by?(current_user) %>
-  <%= link_to post_image_favorites_path(post_image), method: :delete, class:"d-flex text-decoration-none", remote: true do %>
-    <div class="text-danger">♥</div>
-    <div class="text-dark"><%= post_image.favorites.count %></div>
-  <% end %>
-<% else %>
-  <%= link_to post_image_favorites_path(post_image), method: :post, class:"d-flex text-decoration-none", remote: true do %>
+<% if current_user.email == 'guest@exp.com' %>
+  <div class="d-flex">
     <div class="text-danger">♡</div>
     <div class="text-dark"><%= post_image.favorites.count %></div>
+  </div>
+<% else %>
+
+  <% if post_image.favorited_by?(current_user) %>
+    <%= link_to post_image_favorites_path(post_image), method: :delete, class:"d-flex text-decoration-none", remote: true do %>
+      <div class="text-danger">♥</div>
+      <div class="text-dark"><%= post_image.favorites.count %></div>
+    <% end %>
+  <% else %>
+    <%= link_to post_image_favorites_path(post_image), method: :post, class:"d-flex text-decoration-none", remote: true do %>
+      <div class="text-danger">♡</div>
+      <div class="text-dark"><%= post_image.favorites.count %></div>
+    <% end %>
   <% end %>
 <% end %>

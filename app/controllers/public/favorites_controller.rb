@@ -16,7 +16,7 @@ class Public::FavoritesController < ApplicationController
   end
 
   def ensure_normal_user
-    user = User.find(params[:id])
+    user = current_user
     if user.email == 'guest@exp.com'
       flash[:notice] = "ゲストユーザーはイイねできません。"
       redirect_to user_path(user.id)

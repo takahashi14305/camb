@@ -17,7 +17,11 @@
 <div class="col-md-4">
   <%= form_with model: [post_image, post_comment], local: false do |f| %>
     <%= f.text_area :comment, size: "20x2", placeholder: "コメントを入力" %>
-    <%= f.submit "送信する" %>
+    <% if current_user.email == 'guest@exp.com' %>
+      <div class="btn btn-light textdark btn-sm">送信する</div>
+    <% else %>
+      <%= f.submit "送信する" %>
+    <% end %>
   <% end %>
   <%#= paginate comment, theme: 'bootstrap-5' %>
 
