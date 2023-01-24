@@ -9,18 +9,23 @@
 
     <%= form_with model: @post_image, local: true, method: :patch do |f| %>
       <div class= "row">
-        <div class= "col-md-12 text-center text-white">
+        <div class= "col-md-4 text-center text-white mt-2">
+          ・投稿一覧では１番目に選択した画像が表示されます<br>
+          ・(Ctrl)を押したま画像を選択してください<br>
+          ※Macでは(Command)を押したま画像を選択
+        </div>
+        <div class= "col-md-4 text-center text-white">
           <table align="center" style="height: 380px">
             <tr>
               <td><label for="inputName">画像</label></td>
               <td><%= f.file_field :image, accept: "image/*", multiple: true %></td>
             </tr>
             <tr>
-              <td><label for="inputIntroduction">タイトル</label></td>
+              <td><label for="inputIntroduction">タイトル<br>(※36字制限)</label></td>
               <td><%= f.text_field :title, class: "bg-transparent border border-white text-white", size: "30x3" %></td>
             </tr>
             <tr>
-              <td><label for="inputImage">本文</label></td>
+              <td><label for="inputImage">本文<br>(※1000字制限)</label></td>
               <td><%= f.text_area :body, class: "bg-transparent border border-white text-white", size: "30x7" %></td>
             </tr>
           </table>

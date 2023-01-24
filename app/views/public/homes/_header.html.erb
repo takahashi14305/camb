@@ -4,7 +4,7 @@
     <div class="col-md-4 text-center text-white pl-5 mt-3 d-flex">
       <% if user_signed_in? %>
         <div class=""><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-outline-success text-light ml-1" %></div>
-        <div class=""><%= link_to "D M", rooms_path, class:"btn btn-outline-success text-light ml-5" %></div>
+        <div class=""><%= link_to "　D M　", rooms_path, class:"btn btn-outline-success text-light ml-5" %></div>
         <div class=""><%= link_to '　新規投稿　', new_post_image_path, class:"btn btn-outline-success text-light ml-5" %></div>
       <% else %>
         <div class=""><%= link_to "新規登録", new_user_registration_path, class:"text-light btn btn-outline-success ml-5" %></div>

@@ -11,10 +11,10 @@
           <% else%>
             <h2>PROFILE</h2>
           <% end %>
-          <%#= link_to users_show_path(user.id) do %>
-          <div class="text-center"><%= image_tag r.get_profile_image(170,170), class:"border border-3" %></div>
-          <h3><%= r.name %></h3>
-          <%# end %>
+          <%= link_to users_show_path(r.id), class:"text-light" do %>
+            <div class="text-center"><%= image_tag r.get_profile_image(170,170), class:"border border-3" %></div>
+            <h3><%= r.name %></h3>
+          <% end %>
           <div>自己紹介</div>
           <% if !r.introduction.blank? %>
             <h5 class= "border-bottom mt-2 ml-4 mr-4"><%= r.introduction %></h5>
