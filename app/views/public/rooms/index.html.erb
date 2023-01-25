@@ -15,34 +15,38 @@
       <%= render 'public/users/profile', user: @current_user %>
 
       <div class="col-md-9 text-white mt-2">
-        <div class='box5 scroll'>
-          <table border="1" rules="rows" width="1000px">
-            <thead>
-              <tr>
-                <th width="20%">名前</th>
-                <th width="20%">日時</th>
-                <th class="text-truncate" width="60%">最新メッセージ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @rooms.each do |room| %>
-                <tr height="50px">
-                  <td>
-                    <%= link_to user_path(room.users.where.not(id: current_user.id)[0].id), class:"text-white" do %>
-                      <%= image_tag room.users.where.not(id: current_user.id)[0].get_profile_image(30,30), class:"rounded-circle"; %><%= room.users.where.not(id: current_user.id)[0].name %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to room.messages.last.created_at.strftime("%Y-%m-%d %H:%M"), room_path(room.id), class:"text-white" %>
-                  </td>
-                  <td>
-                    <%= link_to room.messages.last.body, room_path(room.id), class:"text-white text-truncate" %>
-                  </td>
+        <% if @rooms.exists? %>
+          <div class='box5 scroll'>
+            <table border="1" rules="rows" width="1000px">
+              <thead>
+                <tr>
+                  <th width="20%">名前</th>
+                  <th width="20%">日時</th>
+                  <th class="text-truncate" width="60%">最新メッセージ</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                <% @rooms.each do |room| %>
+                  <tr height="50px">
+                    <td>
+                      <%= link_to user_path(room.users.where.not(id: current_user.id)[0].id), class:"text-white" do %>
+                        <%= image_tag room.users.where.not(id: current_user.id)[0].get_profile_image(30,30), class:"rounded-circle"; %><%= room.users.where.not(id: current_user.id)[0].name %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to room.messages.last&.created_at&.strftime("%Y-%m-%d %H:%M") || "-", room_path(room.id), class:"text-white" %>
+                    </td>
+                    <td>
+                      <%= link_to room.messages.last&.body || "ルームだけが存在しています", room_path(room.id), class:"text-white text-truncate" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <p>DMの履歴はございません。</p>
+        <% end %>
       </div>
     </div>
   </div>
