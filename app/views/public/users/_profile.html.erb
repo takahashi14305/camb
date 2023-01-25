@@ -4,7 +4,7 @@
       <h2>MY PROFILE</h2>
     <% else%>
       <% if user.is_deleted %>
-        <h2>このユーザーは退会済みです</h2>
+        <h2>このユーザーは<br>退会済みです</h2>
       <% else %>
        <h2>PROFILE</h2>
       <% end %>
@@ -18,7 +18,7 @@
     <% if !user.introduction.blank? %>
       <div class= "introduction border-bottom mt-2 ml-4 mr-4"><%= user.introduction %></div>
     <% else %>
-      <div class= "introduction border-bottom">まだ設定していません</div>
+      <div class= "introduction border-bottom mt-2">まだ設定していません</div>
     <% end %>
     <table align="center" width="220" height="140">
       <tr class= "border-bottom">

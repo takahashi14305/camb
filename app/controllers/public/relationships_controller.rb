@@ -60,7 +60,7 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def ensure_normal_user
-    user = current_user
+    user = User.find(params[:user_id])
     if user.email == 'guest@exp.com'
       flash[:notice] = "ゲストユーザーはフォローできません。"
       redirect_to user_path(user.id)

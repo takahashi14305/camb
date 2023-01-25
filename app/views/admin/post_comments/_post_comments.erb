@@ -1,0 +1,14 @@
+<div class="col-md-2">
+  <h6 class="card-title">コメント欄　<%= post_image.post_comments.count %>件</h6>
+</div>
+<div class="col-md-6 d-flex">
+  <div class='box scroll'>
+    <% post_image.post_comments.each do |post_comment| %>
+      <div><%= image_tag post_comment.user.get_profile_image(30,30), class:"rounded-circle"; %>
+        <%= post_comment.user.name %>　<%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        <%= link_to "削除", admin_post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, remote: true %>
+      </div>
+      <div>–　<%= post_comment.comment %></div>
+    <% end %>
+  </div>
+</div>

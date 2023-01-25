@@ -17,9 +17,9 @@
           <% end %>
           <div>自己紹介</div>
           <% if !r.introduction.blank? %>
-            <h5 class= "border-bottom mt-2 ml-4 mr-4"><%= r.introduction %></h5>
+            <h5 class= "introduction border-bottom mt-2 ml-4 mr-4"><%= r.introduction %></h5>
           <% else %>
-            <h6 class= "border-bottom">まだ設定していません</h6>
+            <h6 class= "introduction border-bottom mt-2">まだ設定していません</h6>
           <% end %>
           <table align="center" width="220" height="180">
             <tr class= "border-bottom">
@@ -71,18 +71,14 @@
               <p>メッセージはまだありません</p>
             <% end %>
           </div>
-      </div>
-
-    </div>
-      <div class= "row text-white">
-        <div class="col-md-6 text-center text-white mt-4"></div>
-          <div class="col-md-6 text-center text-white mt-4">
+          <div class="text-center text-white mt-4">
             <%= form_with model: @message, url: room_messages_path(params[:id]), local: true do |f| %>
-              <%= f.text_area :body, placeholder: "メッセージを入力してください", class: "bg-transparent border border-white text-white", size: "40x4" %>
+              <%= f.text_area :body, placeholder: "メッセージを入力してください", class: "bg-transparent border border-white text-white", size: "50x4" %>
               <%= f.hidden_field :room_id, value: @room.id %>
               <%= f.submit "送信する" %>
             <% end %>
           </div>
       </div>
+    </div>
   </div>
 </div>
