@@ -28,15 +28,13 @@
                 <% else %>
                   <div class=""><%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"text-light btn btn-outline-success" %></div>
                 <% end %>
-              <% end %>
             </td>
             <td>
-              <% unless user == current_user %>
                 <% if @have_room == true %>
                   <div><%= link_to "ダイレクトメッセージ", room_path(@room.id), method: :get, class:"text-light btn btn-outline-success" %></div>
                 <% else %>
-                  <%= form_with model: @room, method: :post, local: true do |f|%>
-                    <%= f.hidden_field :user_id, value: @user.id %>
+                  <% form_with model: @room, method: :post, local: true do |f|%>
+                    <%= f.hidden_field :user_id, value: user.id %>
                     <div><%= f.submit "D Mを始める", class:"text-light btn btn-outline-success" %></div>
                   <% end %>
                 <% end %>
