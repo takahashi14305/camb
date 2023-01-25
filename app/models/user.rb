@@ -53,4 +53,16 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  # userに相手のuser情報を入れるとすでに部屋があるか確認してくれる
+  def has_room?(user)
+    get_room(user) != nil
+  end
+
+  # userに相手のuser情報を入れるとすでに部屋がある場合、部屋のレコードを返してくれる
+  def get_room(user)
+    ids = rooms.pluck(:id)
+    Room.left_joins(:room_users).where(id: ids).find_by(room_users: {user_id: user.id})
+  end
+
 end
