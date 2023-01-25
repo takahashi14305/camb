@@ -20,7 +20,7 @@
     <div class= "row">
       <%= render 'public/users/profile', user: @user, post_images: @post_images %>
 
-      <%= render 'public/relationships/follow', users: @users %>
+      <%= render 'public/relationships/follow', users: @users, have_room: @have_room, room: @room  %>
 
     </div>
   </div>
