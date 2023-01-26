@@ -17,7 +17,7 @@
         <div>
           <h2>PROFILE</h2>
           <%= link_to admin_user_path(@post_image.user.id) do %>
-            <div class="text-center" ><%= image_tag @post_image.user.get_profile_image(170,170), class:"border border-3" %></div>
+            <div class="pro-img text-center" ><%= image_tag @post_image.user.get_profile_image(100,100), class:"border border-3" %></div>
             <h3 class="text-white"><%= @post_image.user.name %></h3>
           <% end %>
           <div>自己紹介</div>
