@@ -4,7 +4,7 @@
 
     <%= render 'public/homes/header', current_user: @current_user %>
 
-     <div class= "row">
+    <div class= "row">
       <div class="col-md-3 text-center text-white mt-2">
         <div><%= render 'public/search/user_search', search_u: @search_u %></div>
         <div><%= render 'public/search/post_search', search_p: @search_p %></div>
@@ -21,5 +21,6 @@
       <%= render 'public/users/profile', user: @current_user, post_images: @post_images %>
       <%= render 'public/post_images/list', post_images: @post_images %>
     </div>
+
   </div>
 </div>

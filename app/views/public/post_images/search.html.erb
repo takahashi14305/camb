@@ -5,7 +5,6 @@
     <%= render 'public/homes/header' %>
 
     <div class= "row">
-
       <div class="col-md-3 text-center text-white mt-2">
         <div><%= render 'public/search/user_search', search_u: @search_u %></div>
         <div><%= render 'public/search/post_search', search_p: @search_p %></div>
@@ -18,15 +17,12 @@
       <div class="col-md-4 text-white mt-2">
         <%= paginate @search_post_images, theme: 'bootstrap-5' %>
       </div>
+    </div>
 
     <div class= "row">
       <%= render 'public/users/profile', user: current_user %>
-
-        <%# if !@search_post_images.blank? %>
-          <%= render 'list', post_images: @search_post_images %>
-        <%# else %>
-          <!--<p>検索した投稿はありません</p> -->
-        <%# end %>
+      <%= render 'list', post_images: @search_post_images %>
     </div>
+
   </div>
 </div>

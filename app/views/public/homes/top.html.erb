@@ -3,15 +3,18 @@
   <div class="full-page">
 
     <div class= "row">
+
       <div class="col-md-4 text-center text-white" style="margin-top:150px">
         <div class="top-left"><%= link_to "キ", new_admin_session_path, class:"text-white text-decoration-none" %>ャンプを楽しむ仲間がいる。<br>山 、川 、森 、</br>知らない場所が無限にある。<br>楽しむ方法が無限にある。</br>知らない世界がここにある。</div>
       </div>
+
       <div class="col-md-4 text-center text-white">
         <%= link_to about_path do %>
           <div class="logo-1"><%= image_tag 'logo3.png', size: '400x400' %></div>
         <% end %>
         <div class="top-english">CAMB is like a club where everyone gets together.<br> And share their camp life with each other. <br>Enjoy yourselves to the fullest!</div>
       </div>
+
       <div class="col-md-4 text-white">
         <% if user_signed_in? %>
           <div class="top-right1" style="">ようこそ</div>
@@ -24,8 +27,11 @@
           <div class="top-right2" style="">知らない世界へ</div>
         <% end %>
       </div>
+
     </div>
+
     <div class= "row">
+
       <div class="col-md-4"></div>
       <div class="col-md-5 text-center d-flex" style="margin-top:20px">
         <div class="top-btn text-center">
@@ -52,6 +58,7 @@
           <div class="text-light text-center"><%= flash[:notice] %></div>
         </div>
       </div>
+
       <div class="col-md-3"></div>
     </div>
 

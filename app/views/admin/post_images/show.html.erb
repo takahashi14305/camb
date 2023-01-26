@@ -14,13 +14,14 @@
 
     <div class= "row">
       <div class="col-md-3 text-center text-white" style="margin-top:0px">
+
         <div>
           <h2>PROFILE</h2>
           <%= link_to admin_user_path(@post_image.user.id) do %>
             <div class="pro-img text-center" ><%= image_tag @post_image.user.get_profile_image(100,100), class:"border border-3" %></div>
             <h3 class="text-white"><%= @post_image.user.name %></h3>
           <% end %>
-          <div>自己紹介</div>
+            <div>自己紹介</div>
           <% if !@post_image.user.introduction.blank? %>
             <h5 class= "border-bottom mt-2 ml-4 mr-1"><%= @post_image.user.introduction %></h5>
           <% else %>
@@ -53,69 +54,55 @@
         </div>
       </div>
 
-        <div class="col-md-6">
-          <div class="card" style="height: 650px;">
-            <div class="images">
-              <% @post_image.image.each do |image|%>
-                <%= image_tag image, class: 'card-img-top' %>
-              <% end %>
-            </div>
-            <div class="card-body">
-              <div class="row" id="post_comment_form_<%= @post_image.id %>">
-                <%= render "admin/post_comments/post_comments", post_image: @post_image, post_comment: @post_comment %>
-              </div>
-            </div>
-            <h5 class="card-footer">
-                <%= image_tag @post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
-                <%= link_to @post_image.user.name, users_show_path(@post_image.id), class:"text-dark" %>
-            </h5>
+      <div class="col-md-6">
+        <div class="card" style="height: 650px;">
+          <div class="images">
+            <% @post_image.image.each do |image|%>
+              <%= image_tag image, class: 'card-img-top' %>
+            <% end %>
           </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card mb-4 mr-2" style="height: 650px;">
-            <div class="card-header">
-              <h4 class="card-title"><%= @post_image.title %></h4>
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <div class='box6 scroll'>
-                  <p class="card-text"><%= @post_image.body %></p>
-                </div>
-                <footer class="blockquote-footer">投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></footer>
-                <footer class="blockquote-footer">編集日：<%= @post_image.updated_at.strftime('%Y/%m/%d') %></footer>
-              </blockquote>
-            </div>
-
-            <div class="card-footer">
-              <div class="d-flex justify-content-center">
-
-                <div class="text-danger">♡</div>
-                <div class="text-dark mr-3"><%= @post_image.favorites.count %></div>
-                <div class="mr-3">
-                  <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ @post_image.user.name }の投稿をシェア】%0a%0a#{ @post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
-                    <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
-                  <% end %>
-                </div>
-                <!--<%# if @post_image.favorited_by?(current_user) %>
-                  <div class="mr-5">
-                    <%#= link_to post_image_favorites_path(@post_image), method: :delete do %>
-                      ♥<%#= @post_image.favorites.count %> いいね
-                    <%# end %>
-                  </div>
-                <%# else %>
-                  <div class="mr-5 mt-2">
-                    <%#= link_to post_image_favorites_path(@post_image), method: :post do %>
-                      ♡<%#= @post_image.favorites.count %> いいね
-                    <%# end %>
-                  </div>
-                <%#end %>  -->
-                  <div class=""><%= link_to "削除", admin_post_image_path(@post_image.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"text-danger btn btn-outline-success mr-4" %></div>
-                  <div class=""><%#= link_to "編集", edit_admin_post_image_path(@post_image.id), class:"text-dark btn btn-outline-success" %></div>
-              </div>
+          <div class="card-body">
+            <div class="row" id="post_comment_form_<%= @post_image.id %>">
+              <%= render "admin/post_comments/post_comments", post_image: @post_image, post_comment: @post_comment %>
             </div>
           </div>
+          <h5 class="card-footer">
+              <%= image_tag @post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
+              <%= link_to @post_image.user.name, users_show_path(@post_image.id), class:"text-dark" %>
+          </h5>
         </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card mb-4 mr-2" style="height: 650px;">
+
+          <div class="card-header">
+            <h4 class="card-title"><%= @post_image.title %></h4>
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <div class='box6 scroll'>
+                <p class="card-text"><%= @post_image.body %></p>
+              </div>
+              <footer class="blockquote-footer">投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></footer>
+              <footer class="blockquote-footer">編集日：<%= @post_image.updated_at.strftime('%Y/%m/%d') %></footer>
+            </blockquote>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-center">
+              <div class="text-danger">♡</div>
+              <div class="text-dark mr-3"><%= @post_image.favorites.count %></div>
+              <div class="mr-3">
+                <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【#{ @post_image.user.name }の投稿をシェア】%0a%0a#{ @post_image.title }%0a%0a%23CAMB%20%23キャンプ%20%23キャンプライフ%0a気になったら見てね！", target: '_blank' do %>
+                  <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
+                <% end %>
+              </div>
+              <div class=""><%= link_to "削除", admin_post_image_path(@post_image.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"text-danger btn btn-outline-success mr-4" %></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
     </div>
   </div>

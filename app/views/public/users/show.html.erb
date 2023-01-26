@@ -17,12 +17,12 @@
       <div class="col-md-4 text-white mt-2">
         <%= paginate @post_images, theme: 'bootstrap-5' %>
       </div>
-
     </div>
 
     <div class= "row">
       <%= render 'public/users/profile', user: @user, post_images: @post_images %>
       <%= render 'public/post_images/list', post_images: @post_images %>
     </div>
+
   </div>
 </div>

@@ -17,15 +17,9 @@
     </div>
 
     <div class= "row">
-      <div class="col-md-3 text-white mt-1">
-      </div>
-
-        <%# if !@search_post_images.blank? %>
-          <%= render 'admin/post_images/list', post_images: @search_post_images %>
-        <%# else %>
-          <!--<p>検索した投稿はありません</p> -->
-        <%# end %>
-      </div>
+      <div class="col-md-3 text-white mt-1"></div>
+      <%= render 'admin/post_images/list', post_images: @search_post_images %>
     </div>
+
   </div>
 </div>

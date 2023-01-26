@@ -1,12 +1,15 @@
 <%= stylesheet_link_tag "users", :media => "all" %>
 <div class="container-fluid">
   <div class="full-page">
+
     <div class= "row">
       <div class= "col-md-12 text-center text-white" style="margin-top:80px">
         <h1>プロフィール編集</h1>
       </div>
     </div>
+
     <%= form_with model: @user do |f| %>
+
       <div class= "row">
         <div class= "col-md-12 text-center text-white">
           <table align="center" style="height: 200px">
@@ -22,7 +25,6 @@
               <td><label for="inputImage">Profile Image</label></td>
               <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
             </tr>
-
           </table>
         </div>
       </div>

@@ -1,12 +1,13 @@
-
 <div class="col-md-9">
   <div class='box2 scroll'>
     <div class="d-flex flex-wrap">
+
       <% if !post_images.blank? %>
         <% post_images.each do |post_image| %>
-          <div class="z-index-1 col-md-4 mb-2">
 
+          <div class="z-index-1 col-md-4 mb-2">
             <div class="card mb-2" style="height: 385px; width: 310px;">
+
               <%= link_to admin_post_image_path(post_image.id), class:"text-dark text-decoration-none" do %>
                 <%= image_tag post_image.image[0], size: "200x200", class: 'card-img-top' %>
                 <h9 class="pb-1"><i class="fas fa-camera"></i><%= post_image.image.count %></h9>
@@ -18,11 +19,11 @@
                   <!--<div>閲覧数: <%#= post_image.view_counts.count %></div> -->
                 <% end %>
               </div>
+
               <ul class="list-group list-group-flush">
                 <div class="list-text d-flex">
                   <div class="text-danger">♡</div>
                   <div class="text-dark mr-5"><%= post_image.favorites.count %></div>
-
                   <div class="mr-5">
                     <i class="far fa-comment"></i>
                     <%= post_image.post_comments.count %>
@@ -44,10 +45,12 @@
 
             </div>
           </div>
+
         <% end %>
       <% else %>
         <h5 class="text-light">------投稿がありません------</h5>
       <% end %>
+
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag "users", :media => "all" %>
 <div class="container-fluid">
   <div class="full-page">
+
     <%= render 'public/homes/header', current_user: current_user %>
     <div class= "row">
       <div class="col-md-3 text-center text-white mt-2"></div>
@@ -13,7 +14,6 @@
 
     <div class= "row">
       <%= render 'public/users/profile', user: @current_user %>
-
       <div class="col-md-9 text-white mt-2">
         <% if @rooms.exists? %>
           <div class='box5 scroll'>
@@ -49,5 +49,6 @@
         <% end %>
       </div>
     </div>
+
   </div>
 </div>

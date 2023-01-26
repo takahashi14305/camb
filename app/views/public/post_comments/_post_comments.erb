@@ -1,6 +1,7 @@
 <div class="col-md-2">
   <h6 class="card-title">コメント欄　<%= post_image.post_comments.count %>件</h6>
 </div>
+
 <div class="col-md-6 d-flex">
   <div class='box scroll'>
     <% post_image.post_comments.each do |post_comment| %>
@@ -14,6 +15,7 @@
     <% end %>
   </div>
 </div>
+
 <div class="col-md-4">
   <%= form_with model: [post_image, post_comment], local: false do |f| %>
     <%= f.text_area :comment, size: "20x2", placeholder: "コメントを入力" %>
@@ -23,6 +25,4 @@
       <%= f.submit "送信する" %>
     <% end %>
   <% end %>
-  <%#= paginate comment, theme: 'bootstrap-5' %>
-
 </div>
