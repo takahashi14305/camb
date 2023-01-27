@@ -27,13 +27,13 @@
             <% @favorites.each do |favorite| %>
               <div class="z-index-1 col-md-4 mb-2">
                 <div class="card mb-2" style="height: 385px; width: 310px;">
-                  <%= link_to post_image_path(favorite.post_image.id), class:"text-dark text-decoration-none" do %>
+                  <%= link_to post_image_path(favorite.post_image.id), data: {"turbolinks" => false}, class:"text-dark text-decoration-none" do %>
                     <%= image_tag favorite.post_image.image[0], size: "200x200", class: 'card-img-top' %>
                     <h9 class="pb-1"><i class="fas fa-camera"></i><%= favorite.post_image.image.count %></h9>
                   <% end %>
 
                   <div class="card-body">
-                    <%= link_to post_image_path(favorite.post_image.id), class:"text-dark text-decoration-none" do %>
+                    <%= link_to post_image_path(favorite.post_image.id), data: {"turbolinks" => false}, class:"text-dark text-decoration-none" do %>
                       <h5 class="card-title text-truncate"><%=favorite. post_image.title %></h5>
                       <p class="card-text" style="line-height:1.5"><%= favorite.post_image.body.truncate(33) %></p>
                       <!--<div>閲覧数: <%#= post_image.view_counts.count %></div> -->
