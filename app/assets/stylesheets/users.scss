@@ -192,6 +192,13 @@ h9{
   overflow-y:scroll;
 }
 
+.dm {
+  width: 488px; /* 省略せずに表示するサイズを指定 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .introduction {
   font-size: 15px;
 }
