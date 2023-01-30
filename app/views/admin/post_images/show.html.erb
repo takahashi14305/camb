@@ -23,7 +23,9 @@
           <% end %>
             <div>自己紹介</div>
           <% if !@post_image.user.introduction.blank? %>
-            <h5 class= "border-bottom mt-2 ml-4 mr-1"><%= @post_image.user.introduction %></h5>
+            <div class='box7 scroll ml-5'>
+              <h5 class= "introduction border-bottom mt-2 ml-3 mr-3 text-left"><%=safe_join(  @post_image.user.introduction.split("\n"),tag(:br)) %></h5>
+            </div>
           <% else %>
             <h6 class= "border-bottom">まだ設定していません</h6>
           <% end %>
@@ -68,7 +70,7 @@
           </div>
           <h5 class="card-footer">
               <%= image_tag @post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
-              <%= link_to @post_image.user.name, users_show_path(@post_image.id), class:"text-dark" %>
+              <%= link_to @post_image.user.name, admin_user_path(@user), class:"text-dark" %>
           </h5>
         </div>
       </div>
@@ -82,7 +84,7 @@
           <div class="card-body">
             <blockquote class="blockquote mb-0">
               <div class='box6 scroll'>
-                <p class="card-text"><%= @post_image.body %></p>
+                <p class="card-text"><%=safe_join(@post_image.body.split("\n"),tag(:br)) %></p>
               </div>
               <footer class="blockquote-footer">投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></footer>
               <footer class="blockquote-footer">編集日：<%= @post_image.updated_at.strftime('%Y/%m/%d') %></footer>

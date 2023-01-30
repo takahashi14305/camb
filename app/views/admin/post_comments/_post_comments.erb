@@ -8,7 +8,7 @@
         <%= post_comment.user.name %>　<%= post_comment.created_at.strftime('%Y/%m/%d') %>
         <%= link_to "削除", admin_post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, remote: true %>
       </div>
-      <div>–　<%= post_comment.comment %></div>
+      <div>–　<%=safe_join(post_comment.comment.split("\n"),tag(:br)) %></div>
     <% end %>
   </div>
 </div>

@@ -11,7 +11,9 @@
     <h3><%= user.name %></h3>
     <div>自己紹介</div>
     <% if !user.introduction.blank? %>
-      <div class= "introduction border-bottom mt-2 ml-4 mr-4"><%= user.introduction %></div>
+      <div class='box7 scroll ml-5'>
+        <div class= "introduction border-bottom mt-2 ml-3 mr-3 text-left"><%=safe_join( user.introduction.split("\n"),tag(:br)) %></div>
+      </div>
     <% else %>
       <div class= "introduction border-bottom">まだ設定していません</div>
     <% end %>

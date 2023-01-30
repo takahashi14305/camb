@@ -21,7 +21,9 @@
           <% end %>
           <div>自己紹介</div>
           <% if !@post_image.user.introduction.blank? %>
-            <div class= "introduction border-bottom mt-2 ml-4 mr-1"><%= @post_image.user.introduction %></div>
+            <div class='box7 scroll ml-5'>
+              <div class= "introduction border-bottom mt-2 ml-3 mr-3 text-left"><%=safe_join(  @post_image.user.introduction.split("\n"),tag(:br)) %></div>
+            </div>
           <% else %>
             <div class= "introduction border-bottom">まだ設定していません</div>
           <% end %>
@@ -95,7 +97,7 @@
           <div class="card-body">
             <blockquote class="blockquote mb-0">
               <div class='box6 scroll'>
-                <p class="card-text"><%= @post_image.body %></p>
+                <p class="card-text"><%=safe_join(@post_image.body.split("\n"),tag(:br)) %></p>
               </div>
               <footer class="blockquote-footer">投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></footer>
               <footer class="blockquote-footer">編集日：<%= @post_image.updated_at.strftime('%Y/%m/%d') %></footer>

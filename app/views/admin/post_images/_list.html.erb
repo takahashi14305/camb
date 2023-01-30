@@ -15,7 +15,7 @@
               <div class="card-body">
                 <%= link_to admin_post_image_path(post_image.id), data: {"turbolinks" => false}, class:"text-dark text-decoration-none" do %>
                   <h5 class="card-title text-truncate"><%= post_image.title %></h5>
-                  <p class="card-text" style="line-height:1.5"><%= post_image.body.truncate(33) %></p>
+                  <p class="card-text text-truncate" style="line-height:1.5"><%=safe_join( post_image.body.split("\n"),tag(:br)) %></p>
                   <!--<div>閲覧数: <%#= post_image.view_counts.count %></div> -->
                 <% end %>
               </div>

@@ -18,7 +18,9 @@
           <% end %>
           <div>自己紹介</div>
           <% if !r.introduction.blank? %>
-            <h5 class= "introduction border-bottom mt-2 ml-4 mr-4"><%= r.introduction %></h5>
+            <div class='box7 scroll ml-5'>
+              <h5 class= "introduction border-bottom mt-2 ml-3 mr-3 text-left"><%=safe_join( r.introduction.split("\n"),tag(:br)) %></h5>
+            </div>
           <% else %>
             <h6 class= "introduction border-bottom mt-2">まだ設定していません</h6>
           <% end %>
@@ -63,7 +65,7 @@
                       </tr>
                       <tr>
                         <td></td>
-                        <td><%= m.body %></td>
+                        <td><%=safe_join( m.body.split("\n"),tag(:br)) %></td>
                       </tr>
                     </table>
                   </div>
