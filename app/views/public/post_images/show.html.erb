@@ -84,7 +84,7 @@
           </div>
           <h5 class="card-footer">
               <%= image_tag @post_image.user.get_profile_image(30,30), class:"rounded-circle"; %>
-              <%= link_to @post_image.user.name, users_show_path(@post_image.id), class:"text-dark" %>
+              <%= link_to @post_image.user.name, users_show_path(@user), class:"text-dark" %>
           </h5>
         </div>
       </div>
