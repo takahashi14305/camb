@@ -6,7 +6,7 @@
   <div class='box scroll'>
     <% post_image.post_comments.each do |post_comment| %>
       <div>
-        <%= link_to users_show_path(post_comment.user), class: "text-dark" do %>
+        <%= link_to user_path(post_comment.user), class: "text-dark" do %>
           <%= image_tag post_comment.user.get_profile_image(30,30), class:"rounded-circle"; %>
           <%= post_comment.user.name %>
         <% end %>

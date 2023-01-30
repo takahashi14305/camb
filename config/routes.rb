@@ -17,8 +17,6 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    get 'users/show/:id' => 'users#show', as: 'users_show'
-    get 'users/edit'
     get "about" => "homes#about"
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'

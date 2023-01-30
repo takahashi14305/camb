@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <% users.each do |user| %>
-            <tr class="follow" onclick='window.location="<%= users_show_path(user.id) %>"' role="link">
+            <tr class="follow" onclick='window.location="<%= user_path(user.id) %>"' role="link">
               <td><%= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %></td>
               <td><%= user.name %></td>
               <td><%= user.post_images.count %></td>

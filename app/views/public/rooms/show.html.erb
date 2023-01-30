@@ -12,7 +12,7 @@
           <% else%>
             <h2>PROFILE</h2>
           <% end %>
-          <%= link_to users_show_path(r.id), class:"text-light" do %>
+          <%= link_to user_path(r.id), class:"text-light" do %>
             <div class="pro-img text-center"><%= image_tag r.get_profile_image(100,100), class:"border border-3" %></div>
             <h3><%= r.name %></h3>
           <% end %>

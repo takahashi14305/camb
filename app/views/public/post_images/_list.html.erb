@@ -37,7 +37,7 @@
               </ul>
 
               <div class="card-footer d-flex"> <!--  onclick='window.location="<%#= users_show_path(favorite.post_image.user.id) %>"' role="link" -->
-                <%= link_to users_show_path(post_image.user.id), class:"d-flex" do %>
+                <%= link_to user_path(post_image.user.id), class:"d-flex" do %>
                   <div><%= image_tag post_image.user.get_profile_image(25,25), class:"rounded-circle"; %></div>
                   <h5 class="post-name mt-1 text-dark"><%= post_image.user.name %></h5>
                 <% end %>
