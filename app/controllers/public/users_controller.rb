@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: %i[withdrawal update edit]
+  before_action :ensure_normal_user, only: %i[withdrawal]
   before_action :user_search
   def show
     @user = User.find(params[:id])
