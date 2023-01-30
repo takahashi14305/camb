@@ -221,3 +221,9 @@ h9{
   object-fit: cover;
 }
 
+.card-text1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
