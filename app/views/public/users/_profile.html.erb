@@ -49,7 +49,7 @@
       <% if current_user.email == 'guest@exp.com' %>
           <div class="btn btn-outline-success text-light mt-4">フォローする</div><br>
           <div class="btn btn-outline-success text-light mt-4">D Mを始める</div>
-          <h5 class="mt-4">ゲストはフォロー･<br>D Mはできません</h5>
+          <h5 class="mt-1">ゲストはフォロー･<br>D Mはできません</h5>
       <% else %>
 
         <% if current_user.following?(user) %>

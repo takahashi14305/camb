@@ -27,17 +27,17 @@
               </thead>
               <tbody>
                 <% @rooms.each do |room| %>
-                  <tr class="text-truncate" height="50px">
+                  <tr height="50px">
                     <td width="25%">
                       <%= link_to user_path(room.users.where.not(id: current_user.id)[0].id), class:"text-white" do %>
                         <%= image_tag room.users.where.not(id: current_user.id)[0].get_profile_image(30,30), class:"rounded-circle"; %><%= room.users.where.not(id: current_user.id)[0].name %>
                       <% end %>
                     </td>
-                    <td width="25%">
-                      <%= link_to room.messages.last&.created_at&.strftime("%Y-%m-%d %H:%M") || "-", room_path(room.id), class:"text-white" %>
+                    <td class="room-index" onclick='window.location="<%= room_path(room.id) %>"' role="link" width="25%">
+                      <div><%= link_to room.messages.last&.created_at&.strftime("%Y-%m-%d %H:%M") || "-" %></div>
                     </td>
-                    <td width="50%">
-                      <div class="dm"><%= link_to room.messages.last&.body || "ルームだけが存在しています", room_path(room.id), class:"text-white" %></div>
+                    <td class="room-index" onclick='window.location="<%= room_path(room.id) %>"' role="link" width="50%">
+                      <div class="dm"><%= link_to room.messages.last&.body || "ルームだけが存在しています" %></div>
                     </td>
                   </tr>
                 <% end %>

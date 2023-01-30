@@ -34,6 +34,7 @@ class Public::RoomsController < ApplicationController
     room_users = RoomUser.where(user_id: current_user.id)
     room_ids = room_users.pluck(:room_id)
     @rooms = Room.where(id: room_ids).order(created_at: :desc)
+    #byebug
 
     # @last_messages = rooms.map { |r| r.messages.last }
     # another_user_ids = RoomUser.where.not(user_id: current_user.id, room_id: room_ids).pluck(:user_id)
