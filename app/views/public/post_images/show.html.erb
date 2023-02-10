@@ -3,16 +3,9 @@
   <div class="full-page">
 
     <%= render 'public/homes/header', current_user: current_user %>
-
     <div class= "row">
-      <div class="col-md-3 text-center text-white"></div>
-      <div class="col-md-3 text-white mt-1 mb-1">
-        <h3>投稿詳細</h3>
-      </div>
-    </div>
 
-    <div class= "row">
-      <div class="col-md-3 text-center text-white" style="margin-top:0px">
+      <div class="col-md-3 text-center text-white">
         <div>
           <h2>PROFILE</h2>
           <%= link_to user_path(@post_image.user.id) do %>
@@ -69,8 +62,8 @@
 
         </div>
       </div>
-
-      <div class="col-md-6">
+      <div class="col-md-6 text-white mt-1 mb-1">
+        <h3 class="ml-5">投稿詳細</h3>
         <div class="card" style="height: 650px;">
           <div class="images">
             <% @post_image.image.each do |image|%>
@@ -89,7 +82,7 @@
         </div>
       </div>
 
-      <div class="col-md-3">
+      <div class="col-md-3 mt-5">
         <div class="card mb-4 mr-2" style="height: 650px;">
           <div class="card-header">
             <h4 class="card-title"><%= @post_image.title %></h4>

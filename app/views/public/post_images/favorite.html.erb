@@ -3,23 +3,20 @@
   <div class="full-page">
 
     <%= render 'public/homes/header', current_user: @current_user %>
-
     <div class= "row">
       <div class="col-md-3 text-center text-white mt-2">
         <div><%= render 'public/search/user_search', search_u: @search_u %></div>
         <div><%= render 'public/search/post_search', search_p: @search_p %></div>
+        <%= render 'public/users/profile', user: @current_user, post_images: @post_images %>
       </div>
-      <div class="col-md-5 text-white mt-2">
-        <h3 class="ml-2">イイね多い順</h3>
-      </div>
-      <div class="col-md-4 text-white mt-2">
-        <%= paginate @post_images, theme: 'bootstrap-5' %>
-      </div>
-    </div>
 
-    <div class= "row">
-      <%= render 'public/users/profile', user: @current_user, post_images: @post_images %>
-      <%= render 'public/post_images/list', post_images: @post_images %>
+      <div class="col-md-9 text-white mt-2">
+        <div class="d-flex">
+          <h3 class="ml-5 pr-5">イイね多い順</h3>
+          <div class="pl-5"><%= paginate @post_images, theme: 'bootstrap-5' %></div>
+        </div>
+        <%= render 'public/post_images/list', post_images: @post_images %>
+      </div>
     </div>
 
   </div>

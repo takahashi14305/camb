@@ -5,21 +5,17 @@
     <%= render 'public/homes/header' %>
 
     <div class= "row">
-      <div class="col-md-3 text-center text-white"></div>
-      <div class="col-md-3 text-white mt-3 mb-3">
-        <h3>フォロワー一覧</h3>
+      <div class="col-md-3 text-center text-white mt-5">
+        <%= render 'public/users/profile', user: @user, post_images: @post_images %>
       </div>
-      <div class="col-md-3 text-white mt-3">
-        <%= paginate @users, theme: 'bootstrap-5' %>
+      <div class="col-md-9 text-white mt-3 mb-3">
+        <div class="d-flex ml-5">
+          <h3>フォロワー一覧</h3>
+          <%= paginate @users, theme: 'bootstrap-5' %>
+        </div>
+        <%= render 'public/relationships/follow', users: @users %>
       </div>
-      <div class="col-md-3 text-white mt-1">
-        <%#= paginate @post_images, theme: 'bootstrap-5' %>
-      </div>
-    </div>
 
-    <div class= "row">
-      <%= render 'public/users/profile', user: @user, post_images: @post_images %>
-      <%= render 'public/relationships/follow', users: @users %>
     </div>
 
   </div>
