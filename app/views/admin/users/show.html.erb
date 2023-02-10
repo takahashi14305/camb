@@ -17,20 +17,16 @@
           <%= f.text_field :body_cont, size: "12x20", class: "bg-transparent border border-white text-light", placeholder: "本文検索" %>
           <%= f.submit "検索" %>
         <% end %>
+        <%= render 'admin/users/profile', user: @user, post_images: @post_images %>
       </div>
 
-      <div class="col-md-5 text-white mt-2">
-        <h3 class="ml-2"><%= @user.name %>の投稿一覧</h3>
+      <div class="col-md-9 text-white mt-2">
+        <div class="d-flex">
+          <h3 class="ml-5 mr-5"><%= @user.name %>の投稿一覧</h3>
+          <%= paginate @post_images, theme: 'bootstrap-5' %>
+        </div>
+        <%= render 'admin/post_images/list', post_images: @post_images %>
       </div>
-      <div class="col-md-4 text-white mt-2">
-        <%= paginate @post_images, theme: 'bootstrap-5' %>
-      </div>
-
-    </div>
-
-    <div class= "row">
-      <%= render 'admin/users/profile', user: @user, post_images: @post_images %>
-      <%= render 'admin/post_images/list', post_images: @post_images %>
     </div>
 
   </div>

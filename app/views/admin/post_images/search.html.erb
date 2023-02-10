@@ -4,21 +4,12 @@
 
     <%= render 'admin/users/header' %>
 
-    <div class= "row">
-      <div class="col-md-3 text-center text-white"></div>
-      <div class="col-md-3 text-white mt-3 mb-3">
-        <h3>検索結果</h3>
+    <div class="row">
+      <div class="col-md-2 text-white"></div>
+      <div class="col-md-9 text-white mt-3 mb-3">
+        <h3 class="ml-5">検索結果</h3>
+        <%= render 'admin/post_images/list', post_images: @search_post_images %>
       </div>
-      <div class="col-md-3 text-white mt-1">
-      </div>
-      <div class="col-md-3 text-white mt-1">
-        <%#= paginate @user, theme: 'bootstrap-5' %>
-      </div>
-    </div>
-
-    <div class= "row">
-      <div class="col-md-3 text-white mt-1"></div>
-      <%= render 'admin/post_images/list', post_images: @search_post_images %>
     </div>
 
   </div>
