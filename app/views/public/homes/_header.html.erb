@@ -1,58 +1,55 @@
 <%= stylesheet_link_tag "users", :media => "all" %>
 <div class= "hedder">
   <div class= "row">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <a class="navbar-brand" href="#">
+        <%= link_to root_path, class:"text-decoration-none" do %>
+          <div class="d-flex justify-content-center">
+            <div class="logo-1"><%= image_tag 'camb_hedlogo5.png', size: '70x70' %></div>
+            <div class="hed-text text-white">CAMB</div>
+            <div class="logo-1"><%= image_tag 'camb_hedlogo4.png', size: '70x70' %></div>
+          </div>
+        <% end %>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-outline-success text-light ml-1" %></li>
+            <li class="nav-item"><%= link_to "　D M　", rooms_path, class:"btn btn-outline-success text-light ml-5" %></li>
+            <li class="nav-item"><%= link_to '　新規投稿　', new_post_image_path, class:"btn btn-outline-success text-light ml-5" %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class:"text-light btn btn-outline-success ml-5" %></li>
+            <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class:"text-light btn btn-outline-success ml-5" %></li>
+          <% end %>
 
-    <div class="col-md-4 text-center text-white pl-5 mt-3 d-flex">
-      <% if user_signed_in? %>
-        <div class=""><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-outline-success text-light ml-1" %></div>
-        <div class=""><%= link_to "　D M　", rooms_path, class:"btn btn-outline-success text-light ml-5" %></div>
-        <div class=""><%= link_to '　新規投稿　', new_post_image_path, class:"btn btn-outline-success text-light ml-5" %></div>
-      <% else %>
-        <div class=""><%= link_to "新規登録", new_user_registration_path, class:"text-light btn btn-outline-success ml-5" %></div>
-        <div class=""><%= link_to "ログイン", new_user_session_path, class:"text-light btn btn-outline-success ml-5" %></div>
-      <% end %>
-    </div>
+          <li class="nav-item"><%= link_to 'ABOUT', about_path, class:"btn btn-outline-success text-light" %></li>
 
-    <div class="col-md-4 text-center text-white">
-      <%= link_to root_path, class:"text-decoration-none" do %>
-        <div class="d-flex justify-content-center">
-          <div class="logo-1"><%= image_tag 'camb_hedlogo5.png', size: '70x70' %></div>
-          <div class="hed-text text-white">CAMB</div>
-          <div class="logo-1"><%= image_tag 'camb_hedlogo4.png', size: '70x70' %></div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="col-md-1 text-center text-white mt-3 d-flex">
-      <div><%= link_to 'ABOUT', about_path, class:"btn btn-outline-success text-light" %></div>
-    </div>
-
-    <div class="col-md-2 text-center text-white text-right d-flex">
-      <% if user_signed_in? %>
-        <div class="navbar navbar-fixed-top navbar-inverse">
-          <nav>
-            <ul class="z-index-2 nav navbar-nav navbar-right">
-              <li class="dropdown mb-3">
-                <a href="#" class="dropdown-toggle btn btn-outline-success text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">投稿表示を変える</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-item"><%= link_to "　新着投稿　", post_images_path, class:"btn btn-outline-success text-dark" %></li>
-                  <li class="dropdown-item"><%= link_to 'イイね多い順', post_images_favorite_path, class:"btn btn-outline-success text-dark" %></li>
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle btn btn-outline-success text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                投稿表示を変える
+              </a>
+                <div class="dropdown-menu z-index-2" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item"><%= link_to "　新着投稿　", post_images_path, class:"btn btn-outline-success text-dark" %></a>
+                  <a class="dropdown-item"><%= link_to 'イイね多い順', post_images_favorite_path, class:"btn btn-outline-success text-dark" %></a>
                   <% if current_user.email == 'guest@exp.com' %>
-                    <li class="dropdown-item"><div class="guesttexst">以下2項目は登録済み<br>であれば閲覧可能</div><div class="btn btn-outline-success text-dark">イイねした投稿</div></li>
-                    <li class="dropdown-item"><div class="btn btn-outline-success text-dark">フォローユーザの投稿</div></li>
+                    <a class="dropdown-item"><div class="guesttexst">以下2項目は登録済み<br>であれば閲覧可能</div><div class="btn btn-outline-success text-dark">イイねした投稿</div></a>
+                    <a class="dropdown-item"><div class="btn btn-outline-success text-dark">フォローユーザの投稿</div></a>
                   <% else %>
-                    <li class="dropdown-item"><%= link_to 'イイねした投稿', users_favorites_path, class:"btn btn-outline-success text-dark" %></li>
-                    <li class="dropdown-item"><%= link_to 'フォローユーザの投稿', users_follow_path, class:"btn btn-outline-success text-dark" %></li>
+                    <a class="dropdown-item"><%= link_to 'イイねした投稿', users_favorites_path, class:"btn btn-outline-success text-dark" %></a>
+                    <a class="dropdown-item"><%= link_to 'フォローユーザの投稿', users_follow_path, class:"btn btn-outline-success text-dark" %></a>
                   <% end %>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      <% else %>
-        <div class=""><%= link_to 'ゲストログイン（閲覧）', users_guest_sign_in_path, method: :post, class:"text-light btn btn-outline-success ml-1 mt-3" %></div>
-      <% end %>
-    </div>
+            </div>
+          <% else %>
+            <li class=""><%= link_to 'ゲストログイン（閲覧）', users_guest_sign_in_path, method: :post, class:"text-light btn btn-outline-success ml-1 mt-3" %></li>
+          <% end %>
+        </ul>
+      </div>
+
+    </nav>
 
   </div>
 </div>
