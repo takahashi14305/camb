@@ -66,7 +66,7 @@
           <% elsif admin_signed_in? %>
           <% else %>
             <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to 'ゲストログイン（閲覧）', users_guest_sign_in_path, method: :post, class:"text-light btn btn-outline-success ml-1 mt-3" %></a>
+              <a class="nav-link" href="#"><%= link_to 'ゲストログイン（閲覧）', users_guest_sign_in_path, method: :post, class:"text-light btn btn-outline-success ml-4" %></a>
             </li>
           <% end %>
         </ul>
