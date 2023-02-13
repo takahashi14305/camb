@@ -1,25 +1,34 @@
-<div class= "hedder">
-  <div class= "row">
+<%= stylesheet_link_tag "users", :media => "all" %>
+<div class= "header" style="font-family: serif;">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button class="navbar-toggler" style="z-index: 100;" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse d-flex" id="navbarNavDropdown">
+        <ul class="navbar-nav" style="z-index: 100;">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <%= link_to root_path, class:"text-decoration-none" do %>
+                <div class="hed-text text-light"><%= image_tag 'camb_hedlogo5.png', size: '45x45', class:"mb-4" %>CAMB<%= image_tag 'camb_hedlogo4.png', size: '45x45', class:"mb-4" %></div>
+              <% end %>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-success ml-5 mr-3 text-light" %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%= link_to "　投稿一覧　", admin_post_images_path, class:"btn btn-outline-success mr-3 text-light" %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%= link_to "ユーザ一覧", admin_users_path, class:"btn btn-outline-success text-light" %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><%= link_to 'ABOUT', about_path, class:"btn btn-outline-success text-light ml-3" %></a>
+          </li>
+          <h3 class="text-light ml-5 mt-3">管理者でログイン中</h3>
+        </ul>
+      </div>
 
-    <div class="col-md-4 text-center d-flex text-white pl-5 mt-3">
-      <div class=""><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-success mr-3 text-light" %></div>
-      <div class=""><%= link_to "　投稿一覧　", admin_post_images_path, class:"btn btn-outline-success mr-3 text-light" %></div>
-      <div class=""><%= link_to "ユーザ一覧", admin_users_path, class:"btn btn-outline-success text-light" %></div>
-    </div>
+    </nav>
 
-    <div class="col-md-4 text-center text-white">
-      <%= link_to root_path, class:"text-decoration-none" do %>
-        <div class="d-flex justify-content-center">
-          <div class="logo-1"><%= image_tag 'camb_hedlogo5.png', size: '70x70' %></div>
-          <div class="hed-text text-white">CAMB</div>
-          <div class="logo-1"><%= image_tag 'camb_hedlogo4.png', size: '70x70' %></div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="col-md-4 text-center text-white mt-3">
-      <h3 class="text-light">管理者でログイン中</h3>
-    </div>
-
-  </div>
 </div>

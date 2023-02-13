@@ -2,6 +2,7 @@
 <div class="container-fluid">
   <div class="full-page">
 
+    <%= render 'public/homes/header', current_user: @current_user %>
     <div class= "row">
       <div class="col-md-3 text-center text-white mt-2">
         <div><%= render 'public/search/user_search', search_u: @search_u %></div>

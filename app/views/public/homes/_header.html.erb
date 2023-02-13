@@ -1,27 +1,37 @@
 <%= stylesheet_link_tag "users", :media => "all" %>
-<div class= "header">
+<div class= "header" style="font-family: serif;">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" style="z-index: 100;" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse d-flex" id="navbarNavDropdown">
         <ul class="navbar-nav" style="z-index: 100;">
-          <li class="nav-item mr-auto" >
-            <a class="nav-link mr-auto" href="#">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
               <%= link_to root_path, class:"text-decoration-none" do %>
-                <div class="hed-text text-light logo-1"><%= image_tag 'camb_hedlogo5.png', size: '35x35' %>CAMB<%= image_tag 'camb_hedlogo4.png', size: '35x35' %></div>
+                <div class="hed-text text-light"><%= image_tag 'camb_hedlogo5.png', size: '45x45', class:"mb-4" %>CAMB<%= image_tag 'camb_hedlogo4.png', size: '45x45', class:"mb-4" %></div>
               <% end %>
             </a>
           </li>
           <% if user_signed_in? %>
             <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-outline-success text-light mb-4" %></a>
+              <a class="nav-link" href="#"><%= link_to "マイページ", user_path(current_user.id), class:"btn btn-outline-success text-light ml-5" %></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><%= link_to "　D M　", rooms_path, class:"btn btn-outline-success text-light ml-5" %></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#"><%= link_to '　新規投稿　', new_post_image_path, class:"btn btn-outline-success text-light ml-5" %></a>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-success mr-3 text-light" %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><%= link_to "　投稿一覧　", admin_post_images_path, class:"btn btn-outline-success mr-3 text-light" %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><%= link_to "ユーザ一覧", admin_users_path, class:"btn btn-outline-success text-light" %></a>
             </li>
           <% else %>
             <li class="nav-item">
@@ -53,6 +63,7 @@
                 <% end %>
                </div>
             </li>
+          <% elsif admin_signed_in? %>
           <% else %>
             <li class="nav-item">
               <a class="nav-link" href="#"><%= link_to 'ゲストログイン（閲覧）', users_guest_sign_in_path, method: :post, class:"text-light btn btn-outline-success ml-1 mt-3" %></a>
@@ -62,6 +73,5 @@
       </div>
 
     </nav>
-
 
 </div>

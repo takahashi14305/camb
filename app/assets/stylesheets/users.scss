@@ -5,14 +5,15 @@
   background-image: image-url('camb_back3.jpg');
   background-size: cover;
   background-position: bottom;
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
   //opacity: 0.4;
   font-family: serif;
-  //position: fixed;
+  position: fixed;
+
 }
 
 .container-fluid::before {
@@ -29,8 +30,8 @@
 }
 
 .full-page {
-  //width: 100vw;
-//  height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
 }
 
 .header {
@@ -42,7 +43,7 @@
 }
 
 .hed-text {
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .card {
@@ -251,4 +252,8 @@ h9{
 
 .navbar-light .navbar-toggler {
     border-color: #fff;
+}
+
+.navbar-toggler-icon{
+  color: #fff;
 }
