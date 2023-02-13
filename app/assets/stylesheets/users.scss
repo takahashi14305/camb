@@ -29,20 +29,20 @@
 }
 
 .full-page {
-  width: 100vw;
-  height: 100vh;
+  //width: 100vw;
+//  height: 100vh;
 }
 
-.hedder {
+.header {
   background-image: image-url('camb_hed2.jpg');
-  height:70px;
+  height:80px;
   background-position: bottom;
   object-fit: cover;
   max-width: 100%;
 }
 
 .hed-text {
-  font-size: 60px;
+  font-size: 30px;
 }
 
 .card {
@@ -241,4 +241,14 @@ h9{
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+//.navbar-nav{
+//  display: flex;
+//  justify-content: flex-end;
+//  text-align: right;
+//}
+
+.navbar-light .navbar-toggler {
+    border-color: #fff;
 }
