@@ -19,8 +19,8 @@
               <td><%= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %></td>
               <td><%= user.name %></td>
               <td><%= user.post_images.count %></td>
-              <td><%= user.followings.count %></td>
-              <td><%= user.followers.count %></td>
+              <td id="follow_count"><%= render 'public/relationships/follow_count', user: user %></td>
+              <td id="follower_count"><%= render 'public/relationships/follower_count', user: user %></td>
               <td><div id="follow_buttons_<%= user.id %>"><%= render 'public/relationships/relationships', user: user %></div></td>
               <td>
                 <% if user != current_user %>
