@@ -25,7 +25,23 @@
           <li class="nav-item">
             <a class="nav-link" href="#"><%= link_to 'ABOUT', about_path, class:"btn btn-outline-success text-light ml-3" %></a>
           </li>
-          <h3 class="text-light ml-5 mt-3">管理者でログイン中</h3>
+
+          <div>
+            <a class="">
+              <%= search_form_for @search_u, url:admin_user_search_path do |f| %>
+                <!--name_contは、あいまい検索を指定-->
+                <%= f.text_field :name_cont, size: "22x20", class: "bg-transparent border border-white text-light ml-3", placeholder: "ユーザー検索" %>
+                <%= f.submit "検索" %>
+              <% end %>
+              <%= search_form_for @search_p, url:admin_post_images_search_path do |f| %>
+                <!--name_contは、あいまい検索を指定-->
+                <%= f.text_field :title_cont, size: "8x20", class: "bg-transparent border border-white text-light ml-3", placeholder: "タイトル" %>
+                <%= f.text_field :body_cont, size: "12x20", class: "bg-transparent border border-white text-light", placeholder: "本文検索" %>
+                <%= f.submit "検索" %>
+              <% end %>
+            </a>
+          </div>
+          <h3 class="text-light ml-5 mt-3">管理者ログイン中</h3>
         </ul>
       </div>
 

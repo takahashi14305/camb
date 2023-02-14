@@ -5,21 +5,7 @@
     <%= render 'admin/users/header' %>
 
     <div class= "row">
-      <div class="col-md-3 text-center text-white mt-2">
-        <%= search_form_for @search_u, url:admin_user_search_path do |f| %>
-          <!--name_contは、あいまい検索を指定-->
-          <%= f.text_field :name_cont, size: "22x20", class: "bg-transparent border border-white text-light", placeholder: "ユーザー検索" %>
-          <%= f.submit "検索" %>
-        <% end %>
-        <%= search_form_for @search_p, url:admin_post_images_search_path do |f| %>
-          <!--name_contは、あいまい検索を指定-->
-          <%= f.text_field :title_cont, size: "8x20", class: "bg-transparent border border-white text-light", placeholder: "タイトル" %>
-          <%= f.text_field :body_cont, size: "12x20", class: "bg-transparent border border-white text-light", placeholder: "本文検索" %>
-          <%= f.submit "検索" %>
-        <% end %>
-      </div>
-
-      <div class="col-md-9 text-white mt-2">
+      <div class="col-md-12 text-white mt-2">
         <div class="d-flex">
           <h3 class="ml-5 mr-5">投稿一覧(新着順)</h3>
           <%= paginate @post_images, theme: 'bootstrap-5' %>

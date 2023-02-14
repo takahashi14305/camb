@@ -1,11 +1,11 @@
-<div class="col-md-9">
-  <div class='box2 scroll'>
+<div class="col-md-12">
+  <div class='box21 scroll'>
     <div class="d-flex flex-wrap">
 
       <% if !post_images.blank? %>
         <% post_images.each do |post_image| %>
 
-          <div class="z-index-1 col-md-4 mb-2">
+          <div class="z-index-1 col-md-3 mb-2">
             <div class="card mb-2" style="height: 385px; width: 310px;">
 
               <%= link_to admin_post_image_path(post_image.id), data: {"turbolinks" => false}, class:"text-dark text-decoration-none" do %>

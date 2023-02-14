@@ -37,6 +37,7 @@ class Admin::PostImagesController < ApplicationController
   def post_images_search
     @search_p = PostImage.ransack(params[:q])
     @search_post_images = @search_p.result
+    @search_u = User.ransack(params[:q])
   end
 
   private

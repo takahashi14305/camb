@@ -4,6 +4,8 @@ class Admin::UsersController < ApplicationController
 
   def index
     @user = User.page(params[:page]).per(20)
+    @search_u = User.ransack(params[:q])
+    @search_p = PostImage.ransack(params[:q])
   end
 
   def show
@@ -52,6 +54,7 @@ class Admin::UsersController < ApplicationController
   def user_search
     @search_u = User.ransack(params[:q])
     @search_users = @search_u.result
+    @search_p = PostImage.ransack(params[:q])
   end
 
   private
