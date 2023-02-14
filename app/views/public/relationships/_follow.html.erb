@@ -15,21 +15,13 @@
         </thead>
         <tbody>
           <% users.each do |user| %>
-            <tr class="follow" onclick='window.location="<%= user_path(user.id) %>"' role="link">
+            <tr class="follow">
               <td><%= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %></td>
               <td><%= user.name %></td>
               <td><%= user.post_images.count %></td>
               <td><%= user.followings.count %></td>
               <td><%= user.followers.count %></td>
-              <td>
-                <% if user != current_user %>
-                  <% if current_user.following?(user) %>
-                    <div class=""><%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class:"text-light btn btn-outline-success" %></div>
-                  <% else %>
-                    <div class=""><%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"text-light btn btn-outline-success" %></div>
-                  <% end %>
-                <% end %>
-              </td>
+              <td><div id="follow_buttons_<%= user.id %>"><%= render 'public/relationships/relationships', user: user %></div></td>
               <td>
                 <% if user != current_user %>
                   <% if current_user.has_room?(user) %>

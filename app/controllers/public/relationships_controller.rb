@@ -3,12 +3,12 @@ class Public::RelationshipsController < ApplicationController
 
   def create
     current_user.follow(params[:user_id])
-    redirect_to request.referer
+    @user = User.find(params[:user_id])
   end
 
   def destroy
     current_user.unfollow(params[:user_id])
-    redirect_to request.referer
+    @user = User.find(params[:user_id])
   end
 
   def followings
@@ -38,6 +38,7 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def followers
+    #byebug
     @user = User.find(params[:user_id])
     @users = @user.followers.page(params[:page]).per(10)
     @currentRoomUser = RoomUser.where(user_id: @current_user)  #current_userが既にルームに参加しているか判断

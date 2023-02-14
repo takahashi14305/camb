@@ -1,0 +1,2 @@
+<%# byebug %>
+$('#follow_buttons_<%= @user.id %>').html("<%= j(render 'public/relationships/relationships', user: @user) %>");
