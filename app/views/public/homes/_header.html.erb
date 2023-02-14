@@ -58,9 +58,10 @@
                </div>
             </li>
           <% end %>
-          <% if current_user.email == 'guest@exp.com' %>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-success ml-5 text-light" %></a>
+          <% if user_signed_in? %>
+            <li class="nav-item ml-5">
+              <div><%= render 'public/search/user_search', search_u: @search_u %></div>
+              <div><%= render 'public/search/post_search', search_p: @search_p %></div>
             </li>
           <% end %>
         </ul>

@@ -5,9 +5,7 @@
     <%= render 'public/homes/header', current_user: @current_user %>
 
     <div class= "row">
-      <div class="col-md-3 text-center text-white mt-2">
-        <div><%= render 'public/search/user_search', search_u: @search_u %></div>
-        <div><%= render 'public/search/post_search', search_p: @search_p %></div>
+      <div class="col-md-3 text-center text-white mt-4">
         <%= render 'public/users/profile', user: @current_user, post_images: @post_images %>
       </div>
       <div class="col-md-9 text-white mt-2">
@@ -39,7 +37,7 @@
                       <div class="mr-5" id="favorite_buttons_<%= favorite.post_image.id %>" >
                         <%= render "public/favorites/favorite", post_image: favorite.post_image %>
                       </div>
-                      <div class="mr-5">
+                      <div class="mr-5 text-dark">
                         <i class="far fa-comment"></i>
                         <%= favorite.post_image.post_comments.count %>
                       </div>

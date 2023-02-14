@@ -5,54 +5,14 @@
     <%= render 'public/homes/header' %>
 
     <div class= "row">
-      <div class="col-md-3 text-center text-white">
+      <div class="col-md-3 text-center text-white mt-4">
         <%= render 'public/users/profile', user: current_user %>
       </div>
       <div class="col-md-9 text-white mt-3 mb-3">
-        <h3 calss="ml-5">検索結果</h3>
-
-        <% if @search_users.any? %>
-
-          <table class="table text-white text-center">
-            <thead>
-              <tr>
-                <th></th>
-                <th>名前</th>
-                <th>投稿数</th>
-                <th>フォロー </th>
-                <th>フォロワー</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @search_users.each do |user| %>
-                <tr class="follow" onclick='window.location="<%= user_path(user.id) %>"' role="link">
-                  <td><%= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %></td>
-                  <td><%= user.name %></td>
-                  <td><%= user.post_images.count %></td>
-                  <td><%= user.followings.count %></td>
-                  <td><%= user.followers.count %></td>
-                  <td>
-                    <% if current_user.email == 'guest@exp.com' %>
-                        <div class="btn btn-outline-success text-light">フォローする</div><br>
-                    <% else %>
-                      <% unless user.id == current_user.id %>
-                        <% if current_user.following?(user) %>
-                          <div class=""><%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class:"text-light btn btn-outline-success" %></div>
-                        <% else %>
-                          <div class=""><%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"text-light btn btn-outline-success" %></div>
-                        <% end %>
-                      <% end %>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-
-        <% else %>
-          <p>検索したユーザーはいません</p>
-        <% end %>
+        <div class="d-flex ml-5">
+          <h3>検索結果</h3>
+        </div>
+        <%= render 'public/relationships/follow', users: @search_users %>
       </div>
     </div>
 

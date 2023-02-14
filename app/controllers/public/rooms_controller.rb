@@ -20,6 +20,8 @@ class Public::RoomsController < ApplicationController
     else
       redirect_back(fallback_location: root_path)
     end
+    @search_p = PostImage.ransack(params[:q])
+    @search_u = User.ransack(params[:q])
   end
 
   def ensure_normal_user
@@ -39,6 +41,8 @@ class Public::RoomsController < ApplicationController
     # @last_messages = rooms.map { |r| r.messages.last }
     # another_user_ids = RoomUser.where.not(user_id: current_user.id, room_id: room_ids).pluck(:user_id)
     # @another_users = User.where(id: another_user_ids)
+    @search_p = PostImage.ransack(params[:q])
+    @search_u = User.ransack(params[:q])
   end
 
   private

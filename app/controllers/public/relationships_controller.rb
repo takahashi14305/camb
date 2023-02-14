@@ -33,6 +33,8 @@ class Public::RelationshipsController < ApplicationController
         #//新しいインスタンスを生成
       end
     end
+    @search_p = PostImage.ransack(params[:q])
+    @search_u = User.ransack(params[:q])
   end
 
   def followers
@@ -57,6 +59,8 @@ class Public::RelationshipsController < ApplicationController
         #//新しいインスタンスを生成
       end
     end
+    @search_p = PostImage.ransack(params[:q])
+    @search_u = User.ransack(params[:q])
   end
 
   def ensure_normal_user
