@@ -1,2 +1,5 @@
 $('#follow_buttons_<%= @user.id %>').html("<%= j(render 'public/relationships/relationships', user: @user) %>");
-$('#follower_count<%= @user.id %>').html("<%= j(render 'public/relationships/follower_count', user: @user) %>");
+$('.follower_count<%= @user.id %>').html("<%= j(render 'public/relationships/follower_count', user: @user) %>");
+$('.follow_count<%= @user.id %>').html("<%= j(render 'public/relationships/follow_count', user: @user) %>");
+$('.follow_count<%= current_user.id %>').html("<%= j(render 'public/relationships/follow_count', user: current_user) %>");
+$('.follower_count<%= current_user.id %>').html("<%= j(render 'public/relationships/follower_count', user: current_user) %>");

@@ -19,9 +19,14 @@
               <td class="follow" onclick='window.location="<%= user_path(user.id) %>"' role="link"><%= image_tag user.get_profile_image(30,30), class:"rounded-circle"; %></td>
               <td class="follow" onclick='window.location="<%= user_path(user.id) %>"' role="link"><%= user.name %></td>
               <td class="follow" onclick='window.location="<%= user_path(user.id) %>"' role="link"><%= user.post_images.count %></td>
-              <td class="follow" onclick='window.location="<%= user_followings_path(user.id) %>"' role="link" id="follow_count"><%= render 'public/relationships/follow_count', user: user %></td>
-              <td class="follow" onclick='window.location="<%= user_followers_path(user.id) %>"' role="link" id="follower_count"><%= render 'public/relationships/follower_count', user: user %></td>
-              <td id="follow_buttons_<%= user.id %>"><%= render 'public/relationships/relationships', user: user %></td>
+              <td class="follow follow_count<%= user.id %>" onclick='window.location="<%= user_followings_path(user.id) %>"' role="link">
+                <%= render 'public/relationships/follow_count', user: user %>
+              </td>
+              <td class="follow follower_count<%= user.id %>" onclick='window.location="<%= user_followers_path(user.id) %>"' role="link">
+                <%= render 'public/relationships/follower_count', user: user %>
+              </td>
+              <td id="follow_buttons_<%= user.id %>">
+                <%= render 'public/relationships/relationships', user: user %></td>
               <td>
                 <% if user != current_user %>
                   <% if current_user.has_room?(user) %>
