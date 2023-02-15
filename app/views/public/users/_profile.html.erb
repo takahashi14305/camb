@@ -60,16 +60,19 @@
           <h5 class="mt-1">ゲストはフォロー･<br>D Mはできません</h5>
       <% else %>
         <div id="follow_buttons_<%= user.id %>" class="mt-4"><%= render 'public/relationships/relationships', user: user %></div>
-        <% unless @user.id == current_user.id %>
-          <% if @have_room == true %>
-            <%= link_to "ダイレクトメッセージ", room_path(@room.id), method: :get, class:"text-light btn btn-outline-success mt-4" %>
-          <% else %>
-            <%= form_with model: @room, method: :post, local: true do |f|%>
-              <%= f.hidden_field :user_id, value: @user.id %>
-              <%= f.submit "D Mを始める", class:"text-light btn btn-outline-success mt-4" %>
+        <% unless controller.controller_name == "rooms" && controller.action_name == "show" %>
+          <% unless user.id == current_user.id %>
+            <% if @have_room == true %>
+              <%= link_to "ダイレクトメッセージ", room_path(@room.id), method: :get, class:"text-light btn btn-outline-success mt-4" %>
+            <% else %>
+              <%= form_with model: @room, method: :post, local: true do |f|%>
+                <%= f.hidden_field :user_id, value: user.id %>
+                <%= f.submit "D Mを始める", class:"text-light btn btn-outline-success mt-4" %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
+
       <% end %>
     <% end %>
 

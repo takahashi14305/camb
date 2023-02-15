@@ -4,64 +4,10 @@
 
     <%= render 'public/homes/header', current_user: current_user %>
     <div class= "row">
-
       <div class="col-md-3 text-center text-white mt-4">
-        <div>
-          <h2>PROFILE</h2>
-          <%= link_to user_path(@post_image.user.id) do %>
-            <div class="pro-img text-center" ><%= image_tag @post_image.user.get_profile_image(100,100), class:"border border-3" %></div>
-            <h3 class="text-white"><%= @post_image.user.name %></h3>
-          <% end %>
-          <div>自己紹介</div>
-          <% if !@post_image.user.introduction.blank? %>
-            <div class='box7 scroll ml-5'>
-              <div class= "introduction border-bottom mt-2 ml-3 mr-3 text-left"><%=safe_join(  @post_image.user.introduction.split("\n"),tag(:br)) %></div>
-            </div>
-          <% else %>
-            <div class= "introduction border-bottom">まだ設定していません</div>
-          <% end %>
-
-          <table align="center" width="220" height="140">
-            <tr class= "border-bottom">
-              <td><%= "投稿数　: #{@post_image.user.post_images.count}" %> 件</td>
-            </tr>
-            <tr class= "border-bottom">
-              <td><%= link_to "Follow　: 　#{@user.followings.count}", user_followings_path(@user.id), class:"text-light" %></td>
-            </tr>
-            <tr class= "border-bottom">
-              <td><%= link_to "Follower　:　#{@user.followers.count}", user_followers_path(@user.id), class:"text-light" %></td>
-            </tr>
-          </table>
-
-          <% if @post_image.user == current_user %>
-            <div class=""><%= link_to "プロフィール編集", edit_user_path(@current_user), class:"text-light btn btn-outline-success mt-4" %></div>
-          <% else%>
-            <% if current_user.email == 'guest@exp.com' %>
-              <div class="btn btn-outline-success text-light mt-4">フォローする</div><br>
-              <div class="btn btn-outline-success text-light mt-4">D Mを始める</div>
-              <h5 class="mt-1">ゲストはフォロー･DM･<br>コメント･イイねはできません</h5>
-            <% else %>
-              <% if current_user.following?(@user) %>
-                <div class=""><%= link_to "フォロー中", user_relationships_path(@user.id), method: :delete, class:"text-light btn btn-outline-success mt-4" %></div>
-              <% else %>
-                <div class=""><%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"text-light btn btn-outline-success mt-4" %></div>
-              <% end %>
-              <% unless @user.id == current_user.id %>
-                <% if @have_room == true %>
-                  <%= link_to "ダイレクトメッセージ", room_path(@room.id), method: :get, class:"text-light btn btn-outline-success mt-4" %>
-                <% else %>
-                  <%= form_with model: @room, method: :post, local: true do |f|%>
-                    <%= f.hidden_field :user_id, value: @user.id %>
-                    <%= f.submit "D Mを始める", class:"text-light btn btn-outline-success mt-4" %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-          <h5 class="mt-5"><%= flash[:notice] %></h5>
-
-        </div>
+        <%= render 'public/users/profile', user: @user %>
       </div>
+
       <div class="col-md-6 text-white mt-1 mb-1">
         <h3 class="ml-5">投稿詳細</h3>
         <div class="card" style="height: 650px;">

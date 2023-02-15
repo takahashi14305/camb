@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :user_search
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images.page(params[:page]).per(16).order(created_at: :desc)
+    @post_images = @user.post_images.page(params[:page]).per(18).order(created_at: :desc)
     @current_user = current_user
     @search_u = User.ransack(params[:q])
     @search_users = @search_u.result
@@ -62,7 +62,7 @@ class Public::UsersController < ApplicationController
   def favorites
     @user = User.find_by(id: params[:id])
     @current_user = current_user
-    @favorites = Favorite.where(user_id: @current_user.id).page(params[:page]).per(8).order(created_at: :desc)
+    @favorites = Favorite.where(user_id: @current_user.id).page(params[:page]).per(18).order(created_at: :desc)
     @search_u = User.ransack(params[:q])
     @search_p = PostImage.ransack(params[:p])
   end
