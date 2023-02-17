@@ -46,7 +46,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'homes/top'
     get 'user/search' => 'users#search'
     get 'post_images/search' => 'post_images#search'
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
