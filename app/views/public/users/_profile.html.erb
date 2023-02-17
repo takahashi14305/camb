@@ -10,8 +10,10 @@
        <h2>PROFILE</h2>
       <% end %>
     <% end %>
-    <div class="pro-img text-center"><%= image_tag user.get_profile_image(100,100), class:"border border-3" %></div>
-    <h3><%= user.name %></h3>
+    <%= link_to user_path(user), class:"text-light" do %>
+      <div class="pro-img text-center"><%= image_tag user.get_profile_image(100,100), class:"border border-3" %></div>
+      <h3><%= user.name %></h3>
+    <% end %>
 
     <div>自己紹介</div>
     <% if !user.introduction.blank? %>
