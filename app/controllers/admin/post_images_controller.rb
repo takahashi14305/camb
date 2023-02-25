@@ -2,7 +2,7 @@ class Admin::PostImagesController < ApplicationController
   before_action :post_images_search
 
   def index
-    @post_images = PostImage.page(params[:page]).per(18).order(created_at: :desc)
+    @post_images = PostImage.page(params[:page]).per(20).order(created_at: :desc)
     @current_user = current_user
     @search_u = User.ransack(params[:q])
     #@search_users = @search_u.result
