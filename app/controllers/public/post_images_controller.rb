@@ -1,6 +1,8 @@
 class Public::PostImagesController < ApplicationController
   before_action :ensure_normal_user, only: %i[new create destroy update edit]
   before_action :post_images_search
+  before_action :is_matching_login_user, only:[:edit, :update]
+
   def new
     @post_image = PostImage.new
     @current_user = current_user
@@ -101,5 +103,13 @@ class Public::PostImagesController < ApplicationController
 
   def post_image_params
     params.require(:post_image).permit(:title, :body, image: [])
+  end
+
+  def is_matching_login_user
+    @post_image = PostImage.find(params[:id])
+    post_image_user_id = @post_image.user
+    unless post_image_user_id == current_user
+      redirect_to post_images_path
+    end
   end
 end
