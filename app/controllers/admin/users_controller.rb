@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   #before_action :ensure_normal_user
   before_action :user_search
+  before_action :is_matching_login_user, only:[:index, :show, :edit, :update, :withdrawal]
 
   def index
     @user = User.page(params[:page]).per(20)
@@ -62,4 +63,12 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
+
+  def is_matching_login_user
+    @admin = Admin.where(email: 'camb@adad')
+    unless @admin == current_user
+      redirect_to post_images_path
+    end
+  end
+
 end
