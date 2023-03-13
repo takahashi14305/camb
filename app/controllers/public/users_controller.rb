@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_normal_user, only: %i[withdrawal update edit]
+  before_action :ensure_normal_user, only: %i[withdrawal update edit follow]
   before_action :user_search
   before_action :is_matching_login_user, only:[:edit, :update]
 

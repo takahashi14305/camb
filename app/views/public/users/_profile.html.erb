@@ -30,15 +30,23 @@
       </tr>
       <tr class= "border-bottom">
           <td>
-            <%= link_to user_followings_path(user.id), class:"text-light" do %>
-              Follow　: 　<span class="follow_count<%= user.id %>"><%= render 'public/relationships/follow_count', user: user %></span>
+            <% if current_user.email == "guest@exp.com" %>
+              Follow　: 　0
+            <%else%>
+              <%= link_to user_followings_path(user.id), class:"text-light" do %>
+                Follow　: 　<span class="follow_count<%= user.id %>"><%= render 'public/relationships/follow_count', user: user %></span>
+              <%end%>
             <%end%>
           </td>
       </tr>
       <tr class= "border-bottom">
           <td>
-            <%= link_to user_followers_path(user.id), class:"text-light" do %>
-              Follower　: 　<span class="follower_count<%= user.id %>"><%= render 'public/relationships/follower_count', user: user %></span>
+            <% if current_user.email == "guest@exp.com" %>
+              Follower　: 　0
+            <%else%>
+              <%= link_to user_followers_path(user.id), class:"text-light" do %>
+                Follower　: 　<span class="follower_count<%= user.id %>"><%= render 'public/relationships/follower_count', user: user %></span>
+              <%end%>
             <%end%>
           </td>
       </tr>
