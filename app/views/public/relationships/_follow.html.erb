@@ -26,7 +26,11 @@
                 <%= render 'public/relationships/follower_count', user: user %>
               </td>
               <td id="follow_buttons_<%= user.id %>">
-                <%= render 'public/relationships/relationships', user: user %></td>
+                <% if current_user.email == "guest@exp.com" %>
+                  <div class="btn btn-outline-success text-light">フォローする</div>
+                <%else%>
+                  <%= render 'public/relationships/relationships', user: user %></td>
+                <%end%>
               <td>
                 <% if user != current_user %>
                   <% if current_user.has_room?(user) %>
